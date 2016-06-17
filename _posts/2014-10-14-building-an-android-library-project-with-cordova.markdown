@@ -1,5 +1,6 @@
 ---
 layout: post
+section-type: post
 title: Building an android library project with cordova
 date: '2014-10-14 00:34:21'
 tags:
@@ -21,36 +22,36 @@ So my solution was twofold.
 Here is the hook that I wrote to accomplish #2
 
     #!/usr/bin/env node
-    
+
     'use strict';
-    
+
     var fs = require('fs');
     var path = require('path');
     var rootdir = process.argv[2];
     var exec = require('child_process').exec;
-    
+
     var linkedLibsPath, projectPropertiesPath, projDir;
-    
+
     if (rootdir) {
         linkedLibsPath = path.join(rootdir, 'platforms', 'android', 'linkedlibraries');
         projectPropertiesPath = path.join(rootdir, 'platforms', 'android', 'project.properties');
         projDir = path.join(rootdir, 'platforms', 'android');
-    
+
         fs.readdir(linkedLibsPath, function(err, files) {
             if (err) {
                 console.log('Error reading directory ' + linkedLibsPath);
                 console.log(err);
                 return;
             }
-    
+
             var linkedLibs = files.map(function(file) {
                 return {
                     name: file,
                     relativeDir: 'linkedlibraries/' + file
                 };
             });
-    
-    
+
+
             linkedLibs.forEach(function(lib) {
                 console.log('executing "android update project --path . --library ' + lib.relativeDir + '"');
                 (function(lib) {
@@ -90,12 +91,12 @@ Here is the hook that I wrote to accomplish #2
                     );
                 }(lib));
             });
-    
+
             console.log('hook before_build.androidLinkedLibs modified ' + projectPropertiesPath);
         });
     }
 
-Also, one last thing to note. When building cordova-android projects using the "cordova" command line tool, the cordova build script will change the default output directory for "ant" to "ant-build" instead of "bin" and "ant-gen" instead of "gen".  
+Also, one last thing to note. When building cordova-android projects using the "cordova" command line tool, the cordova build script will change the default output directory for "ant" to "ant-build" instead of "bin" and "ant-gen" instead of "gen".
 
 From what I could gather this is to prevent conflicts when also building from an IDE like eclipse.  Unfortunately, for some library projects this causes a problem.  Specifically for the project I was trying to integrate this caused it to crash the app citing a missing $R.drawable class.
 
@@ -104,18 +105,18 @@ I only discovered this after many frustrating hours of debugging.  In case you h
 Another before_build hook
 
     #!/usr/bin/env node
-    
+
     'use strict';
-    
+
     var fs = require('fs');
     var path = require('path');
     var rootdir = process.argv[2];
-    
+
     var projDir;
-    
+
     if (rootdir) {
         projDir = path.join(rootdir, 'platforms', 'android');
-    
+
         fs.unlink(path.join(projDir, 'custom_rules.xml'), function(err) {
             if (err) {
                 console.log('Error deleting custom_rules.xml');

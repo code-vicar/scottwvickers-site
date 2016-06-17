@@ -1,5 +1,6 @@
 ---
 layout: post
+section-type: post
 title: Docker
 date: '2015-08-09 22:25:03'
 tags:

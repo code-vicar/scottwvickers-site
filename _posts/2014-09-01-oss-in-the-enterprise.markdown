@@ -1,5 +1,6 @@
 ---
 layout: post
+section-type: post
 title: OSS in the Enterprise
 date: '2014-09-01 22:14:10'
 tags:

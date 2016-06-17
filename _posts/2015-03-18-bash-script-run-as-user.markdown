@@ -1,5 +1,6 @@
 ---
 layout: post
+section-type: post
 title: Bash script "run as" user
 date: '2015-03-18 16:42:19'
 tags:
@@ -12,10 +13,10 @@ This isn't the first time I've had to setup a new environment for my sites, but 
 
 The script does many things, but for this post I want to show one of the pieces that I think is pretty neat and may prove useful to others.
 
-During the server setup process the script will clone and install the website code from github, and it will do this as a dedicated user. 
+During the server setup process the script will clone and install the website code from github, and it will do this as a dedicated user.
 
     sudo -H -n -u "deployer"
-    
+
 The previous command will switch context to the 'deployer' user.
 
 * -u the name of the user to run commands as
@@ -25,7 +26,7 @@ The previous command will switch context to the 'deployer' user.
 I plan to execute the script as a sudo user, so I include the -n flag here to suppress any prompts while the script is running.  If you would rather allow a prompt during the script execution you should omit the -n flag.
 
 So far this isn't anything too fancy, but now we need to tell sudo what command to execute.
-	
+
     # run a command directly
 	sudo -H -n -u "deployer" whoami
 
@@ -40,13 +41,13 @@ This may be sufficient if you only have one or two commands to run, but quickly 
     sudo -H -n -u "deployer" bash << depl
     	ls ~
     depl
-    
+
 Great, so now we are pretty much there.  We can switch to a new user and execute commands as that user in a natural way.
 
 If you want, you can take it a step further and turn this into a reusable function
 
     #!/bin/bash
-    
+
     bail() {
         echo 'Error executing command, exiting'
         exit 1
@@ -55,7 +56,7 @@ If you want, you can take it a step further and turn this into a reusable functi
     exec_cmds_as() {
         sudo -H -n -u "deployer" bash $1 || bail
     }
-    
+
     exec_cmds_as << depl
     	echo ~
     depl
@@ -63,7 +64,7 @@ If you want, you can take it a step further and turn this into a reusable functi
 What about variable expansion?  This script will expand the global variables before executing the sub shell described in the heredoc
 
     #!/bin/bash
-    
+
     bail() {
         echo 'Error executing command, exiting'
         exit 1
@@ -72,18 +73,18 @@ What about variable expansion?  This script will expand the global variables bef
     exec_cmds_as() {
         sudo -H -n -u "deployer" bash $1 || bail
     }
-    
+
     TEST="Hello"
-    
+
     exec_cmds_as << depl
     	echo "$TEST"
     depl
-    
+
 If you're declaring variables in the sub shell you can expand them by escaping the first variable expansion
 
 
 	#!/bin/bash
-    
+
     bail() {
         echo 'Error executing command, exiting'
         exit 1
@@ -92,9 +93,9 @@ If you're declaring variables in the sub shell you can expand them by escaping t
     exec_cmds_as() {
         sudo -H -n -u "deployer" bash $1 || bail
     }
-    
+
     TEST="Hello"
-    
+
     exec_cmds_as << depl
     	TEST="World"
     	echo "$TEST \$TEST"

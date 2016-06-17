@@ -1,5 +1,6 @@
 ---
 layout: post
+section-type: post
 title: Isomorphic React Dockerized
 date: '2015-12-30 18:13:49'
 tags:
@@ -50,7 +51,7 @@ The app is split into 3 pieces
 
 This is the bootstrap file for the react app that will be given to the browser
 
-```javascript
+{% highlight javascript %}
 import React from 'react'
 import { render } from 'react-dom'
 import { Router } from 'react-router'
@@ -61,13 +62,14 @@ render(
   <Router history={history} routes={rootRoute} />,
   document.getElementById('app')
 )
-```
+{% endhighlight %}
+<p></p>
 
 **server/index.js**
 
 This is the express server that will be doing the server side rendering.
 
-```javascript
+{% highlight javascript %}
 // handle react routes
 app.get('*', (req, res, next) => {
     // Note that req.url here should be the full URL path from
@@ -86,20 +88,22 @@ app.get('*', (req, res, next) => {
         }
     })
 })
-```
+{% endhighlight %}
+<p></p>
 
 It also serves the client javascript bundle.  In production the bundle is served statically from the file system.
 
-```javascript
+{% highlight javascript %}
 if (isProdEnv) {
 	// in production, serve the bundled client statically
 	app.use('/static', express.static(path.join(__dirname, '../client')))
 }
-```
+{% endhighlight %}
+<p></p>
 
 In development the bundle is served from memory using webpack dev middleware and hot reloading middleware.
 
-```javascript
+{% highlight javascript %}
 else {
 	// in development, serve the bundle dynamically with webpack hot reloader
 
@@ -116,13 +120,14 @@ else {
 	// Step 3: Attach the hot middleware to the compiler & the server
 	app.use(require('webpack-hot-middleware')(compiler))
 }
-```
+{% endhighlight %}
+<p></p>
 
 **shared**
 
 This folder contains code that is not strictly intended for the client or the server, it is used in either context.  For example, the root route
 
-```javascript
+{% highlight javascript %}
 import React from 'react'
 import history from '../services/history'
 import App from '../components/App.js'
@@ -143,34 +148,36 @@ export default {
         }
     ]
 }
-```
+{% endhighlight %}
+<p></p>
 
 The other react components, and the history service
 
-```javascript
+{% highlight javascript %}
 import { createHistory } from 'history'
 import { createMemoryHistory } from 'history'
 
 let history
 
 if (typeof IS_CLIENT_BUNDLE !== 'undefined' && IS_CLIENT_BUNDLE) {
-	history = createHistory()	
+	history = createHistory()
 } else {
 	history = createMemoryHistory()
 }
 
 export default history
-```
+{% endhighlight %}
+<p></p>
 
 The history service is interesting because we're using a webpack defined global to identify if we're on the client or the server.  The server cannot use the browser history that is the default for react router.  When doing the server side rendering we must use memory history.
 
 The express server has just a single view that is rendered for all requests.  The result of the react server side rendering is passed to the view as content
 
-```html
+{% highlight html %}
 <html>
   <head>
     <title>Isomorphic React Base</title>
-        
+
     <meta charset='utf-8' />
     <meta http-equiv='X-UA-Compatible', content='IE=edge' />
 
@@ -178,21 +185,23 @@ The express server has just a single view that is rendered for all requests.  Th
     <meta name='viewport', content='width=device-width, initial-scale=1' />
   </head>
   <body>
-    <div id="app">{{{content}}}</div>
+    {% raw %}<div id="app">{{{content}}}</div>{% endraw %}
     <script src="static/index.js"></script>
   </body>
 </html>
-```
+{% endhighlight %}
+<p></p>
 
 This is a handlebar template, notice the triple bracket notation around the content, this means it will be rendered unescaped since we're getting back an html string from the react-dom/server.
 
 At this point you can run
 
-```
+{% highlight bash %}
 $ npm install
 $ npm run build
 $ npm run start
-```
+{% endhighlight %}
+<p></p>
 
 and you'll have an isomorphic react app with hot module reloading.
 
@@ -205,63 +214,70 @@ In your browser, navigate to the about page.  Open your browsers development too
 The dockerfile describes how to build an image for running this react server
 
 First it uses the official node base image
-```
+
+{% highlight bash %}
 FROM node:5-slim
 
 MAINTAINER Scott Vickers <scott.w.vickers@gmail.com>
-```
+{% endhighlight %}
+<p></p>
 
 Then it downloads gosu, which will be used later to run the container as the correct user
 
-```
+{% highlight bash %}
 ENV GOSU_DOWNLOAD_SHA256 6f9a6f5d75e25ba3b5ec690a5c601140c43929c3fe565cea2687cc284a8aacc8
 RUN wget -O gosu -nv --ca-directory=/etc/ssl/certs "https://github.com/tianon/gosu/releases/download/1.5/gosu-amd64" \
 && echo "$GOSU_DOWNLOAD_SHA256 *gosu" | sha256sum -c - \
 && chmod +x gosu
-```
+{% endhighlight %}
+<p></p>
 
 Then it will create a directory to hold the react server.  Before copying the full application in it will first start with the package.json file so that it can create a cache layer of the npm dependencies
 
-```
+{% highlight bash %}
 # create a layer for dependencies so they're cached
 RUN mkdir -p /isomorphic_react
 WORKDIR /isomorphic_react
 COPY package.json package.json
 RUN npm install
-```
+{% endhighlight %}
+<p></p>
 
 Then the rest of the application is copied in
 
-```
+{% highlight bash %}
 # copy the source and build
 COPY . /isomorphic_react
 RUN NODE_ENV=production npm run build
 
-```
+{% endhighlight %}
+<p></p>
 
 Here we create a user to run this container as
 
-```
+{% highlight bash %}
 # add user and transfer ownership
 RUN useradd -d /isomorphic_react scott \
 	&& chown -R scott:scott /isomorphic_react \
 	&& chmod -R g+rw /isomorphic_react
-```
+{% endhighlight %}
+<p></p>
 
 Choose the port that we'll expose the server on and copy in the entrypoint.
 
-```
+{% highlight bash %}
 EXPOSE 7777
 
 COPY ./docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 CMD ["npm", "start"]
-```
+{% endhighlight %}
+<p></p>
 
 The entrypoint script will always be the thing that executes whenever this container is run.  It inspects the command that is passed to the container and if it is an npm command it runs it as the 'scott' user, otherwise it lets the command pass through and execute in the container environment.
 
-```
+{% highlight bash %}
 #!/bin/bash
 set -e
 
@@ -272,13 +288,14 @@ fi
 
 echo "Passthrough command"
 exec "$@"
-```
+{% endhighlight %}
+<p></p>
 
 Now that we have a dockerfile we can specify images to be built from it using docker-compose.
 
 For each image that we want to describe we can create a docker compose file.  For example, the docker-compose-dev.yml file
 
-```
+{% highlight bash %}
 web:
     build: .
     ports:
@@ -286,7 +303,8 @@ web:
     environment:
         COMPOSE_PROJECT_NAME: isomorphic_react_dev
         NODE_ENV: development
-```
+{% endhighlight %}
+<p></p>
 
 This compose file lets us say what port to map the container to in the host, as well as specify environment setting, and much more which we aren't using in this demo app.
 
@@ -294,7 +312,7 @@ With this dockerfile and docker-compose file we have everything we need to 'dock
 
 Alternatively, I've included a vagrantfile that will start and provision a VM with docker server and docker-compose installed.  It also has provisioning scripts to build the images from the docker compose files.
 
-```
+{% highlight bash %}
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -365,7 +383,7 @@ SCRIPT
 
 Vagrant.configure(2) do |config|
   config.vm.box = "phusion/ubuntu-14.04-amd64"
-  
+
   config.vm.network "forwarded_port", guest: 7777, host: 8777
   config.vm.network "forwarded_port", guest: 7999, host: 8999
 
@@ -373,12 +391,14 @@ Vagrant.configure(2) do |config|
   config.vm.provision "build_dev",        inline: $build_dev,        type: "shell"
   config.vm.provision "build_prod",       inline: $build_prod,       type: "shell"
 end
-```
+{% endhighlight %}
+<p></p>
 
 Now to get a dockerized isomorphic react app it's as simple as
-```
+{% highlight bash %}
 vagrant up
-```
+{% endhighlight %}
+<p></p>
 Assuming vagrant is installed of course.
 
 I hope this walkthrough has been helpful and inspires you to try out react and docker.

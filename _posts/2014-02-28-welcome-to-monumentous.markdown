@@ -1,5 +1,6 @@
 ---
 layout: post
+section-type: post
 title: Welcome to Monumentous
 date: '2014-02-28 07:58:19'
 tags:
