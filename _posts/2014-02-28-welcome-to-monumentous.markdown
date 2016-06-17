@@ -2,7 +2,9 @@
 layout: post
 section-type: post
 title: Welcome to Monumentous
+permalink: 2014/02/28/welcome-to-monumentous
 date: '2014-02-28 07:58:19'
+category: test
 tags:
 - getting-started
 - technical

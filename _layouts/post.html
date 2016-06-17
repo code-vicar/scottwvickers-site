@@ -1,4 +1,4 @@
-
+{% assign post = page %}
 <!-- Post Layout Start -->
 
 <!DOCTYPE html>
@@ -19,11 +19,8 @@
           <h1><strong>{{ page.title }}</strong></h1>
           <h4>
             <strong>{{ page.date | date_to_string }}</strong>
+            {% include category.html %}
             <small>
-              . category:
-              <a class="category" href="{{site.baseurl}}/categories/{{page.category | downcase}}.html">
-                {{ page.category }}
-              </a>.
               <a href="{{site.baseurl}}{{page.url }}#disqus_thread">Comments</a>
               <br />
               {% for tag in page.tags %}
