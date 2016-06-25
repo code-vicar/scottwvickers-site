@@ -8,7 +8,7 @@ force-https: True
 # HTML Head #
 #############
 
-title: "Monumentous"
+title: "Vickers"
 lang: "en"
 author: "Scott Vickers"
 description: "Blog and website of Scott Vickers."
@@ -117,7 +117,7 @@ social:
   - title: "twitter"
     url: "https://twitter.com/ScottWVickers"
   - title: "github"
-    url: "https://github.com/code-vicar/monumentous-blog"
+    url: "https://github.com/code-vicar"
   - title: "rss"
     url: "/feed.xml"
 
