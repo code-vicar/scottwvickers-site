@@ -18,8 +18,9 @@
 
           {{ page.content | markdownify }}
 
+          {% if site.404-img %}
           <img class="img-responsive center-block fourofour" src="{{site.baseurl}}{{ site.404-img }}" alt="">
-
+          {% endif %}
         </div>
       </div>
     </section>
