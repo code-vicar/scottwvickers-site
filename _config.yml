@@ -120,6 +120,8 @@ social:
     url: "https://www.linkedin.com/in/scottwvickers"
   - title: "github"
     url: "https://github.com/code-vicar"
+  - title: "stack-overflow"
+    url: "http://stackoverflow.com/users/4599499/scott-vickers?tab=profile"
   - title: "rss"
     url: "/feed.xml"
 
