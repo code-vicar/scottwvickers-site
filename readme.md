@@ -1,4 +1,4 @@
-# Monumentous Blog
+# Scott Vickers Blog
 
 Source for
 
