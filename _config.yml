@@ -70,7 +70,6 @@ google-plus-share: True
 tumblr-share: True
 pinterest-share: True
 pocket-share: True
-vkontakte-share: True
 
 disqus-shortname: "pushmodo"
 
@@ -114,14 +113,16 @@ email: scott.w.vickers@gmail.com
 ##################
 
 social:
-  - title: "twitter"
-    url: "https://twitter.com/ScottWVickers"
-  - title: "linkedin"
-    url: "https://www.linkedin.com/in/scottwvickers"
+  - title: "keybase"
+    url: "https://keybase.io/svickers"
   - title: "github"
     url: "https://github.com/code-vicar"
   - title: "stack-overflow"
     url: "http://stackoverflow.com/users/4599499/scott-vickers?tab=profile"
+  - title: "twitter"
+    url: "https://twitter.com/ScottWVickers"
+  - title: "linkedin"
+    url: "https://www.linkedin.com/in/scottwvickers"
   - title: "rss"
     url: "/feed.xml"
 
@@ -129,7 +130,7 @@ social:
 # 404 page #
 ############
 
-# 404-img: "/img/labtocat.png"
+# err-404-img: "/img/labtocat.png"
 
 ################################################################################
 
@@ -156,7 +157,7 @@ paginate_path: "blog/page:num/"
 sass:
   style: compressed
 
-gems:
+plugins:
   - jekyll-paginate
   - jemoji
 
