@@ -18,6 +18,7 @@ class NotFoundPage extends React.Component {
         </p>
         <p>
           Check
+          {' '}
           <a
             href="http://waitbutwhy.com/2013/11/how-to-beat-procrastination.html"
             target="_blank"

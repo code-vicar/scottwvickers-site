@@ -1,12 +1,31 @@
 module.exports = {
   siteMetadata: {
-    title: `Mind Palace`,
+    title: `Vickers`,
     author: `Scott Vickers`,
-    description: `The blog of Scott Vickers`,
-    siteUrl: `https://scottwvickers`,
-    social: {
-      twitter: `ScottWVickers`,
-    },
+    description: `Scott Vickers Blog`,
+    siteUrl: `https://scottwvickers.com`,
+    social: [
+      {
+        title: 'Keybase',
+        url: 'https://keybase.io/svickers'
+      },
+      {
+        title: 'Github',
+        url: 'https://github.com/code-vicar'
+      },
+      {
+        title: 'StackOverflow',
+        url: 'http://stackoverflow.com/users/4599499/scott-vickers?tab=profile'
+      },
+      {
+        title: 'Twitter',
+        url: 'https://twitter.com/ScottWVickers'
+      },
+      {
+        title: 'Linkedin',
+        url: 'https://www.linkedin.com/in/scottwvickers'
+      }
+    ],
   },
   plugins: [
     {

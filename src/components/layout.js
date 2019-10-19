@@ -1,7 +1,12 @@
+/** @jsx jsx */
 import React from "react"
 import { Link } from "gatsby"
+import { ThemeProvider } from 'mineral-ui/themes';
+import { css, jsx } from '@emotion/core'
 
 import { rhythm, scale } from "../utils/typography"
+import MainNav from './main_nav'
+import SocialButtons from "./social_buttons";
 
 class Layout extends React.Component {
   render() {
@@ -52,22 +57,50 @@ class Layout extends React.Component {
       )
     }
     return (
-      <div
-        style={{
-          marginLeft: `auto`,
-          marginRight: `auto`,
-          maxWidth: rhythm(24),
-          padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-        }}
-      >
-        <header>{header}</header>
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
+      <ThemeProvider>
+        <>
+        <div
+          css={css`
+            display: flex;
+            flex-direction: column;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: ${rhythm(24)};
+            padding: ${rhythm(1.5)} ${rhythm(3 / 4)};
+            minHeight: 600;
+          `}
+        >
+          <header
+            css={css`
+              display: flex;
+              justify-content: space-between;
+            `}
+          >
+            {header}
+            <MainNav
+              pathName={location.pathname}
+            />
+          </header>
+          <main>{children}</main>
+          <footer
+            css={css`
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            `}
+          >
+            <SocialButtons />
+            <span
+              style={{
+                marginTop: rhythm(1 / 3),
+              }}
+            >
+              Copyright © Scott Vickers {new Date().getFullYear()}
+            </span>
+          </footer>
+        </div>
+        </>
+      </ThemeProvider>
     )
   }
 }
