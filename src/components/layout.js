@@ -1,94 +1,111 @@
-/** @jsx jsx */
-import React from "react"
-import { Link } from "gatsby"
-import { ThemeProvider } from 'mineral-ui/themes';
-import { css, jsx } from '@emotion/core'
+import React from 'react'
+import { Link } from 'gatsby'
+import { ThemeProvider } from 'mineral-ui/themes'
+import styled from '@emotion/styled'
 
-import { rhythm, scale } from "../utils/typography"
+import { rhythm, scale } from '../utils/typography'
 import MainNav from './main_nav'
-import SocialButtons from "./social_buttons";
+import SocialButtons from './social_buttons'
+
+import '../styles/layout.scss'
 
 class Layout extends React.Component {
+  constructor(props) {
+    super(props)
+    this.navbarRef = React.createRef()
+    this.toggleNavCollapse = this.toggleNavCollapse.bind(this)
+    this.onWindowScroll = this.onWindowScroll.bind(this)
+  }
+
+  toggleNavCollapse() {
+    if (!this.navbarRef.current || !window) {
+      return
+    }
+    const navbarTopOffset = this.navbarRef.current.getBoundingClientRect().top + window.pageYOffset
+    if (this.navbarRef.current.classList.contains('top-nav-collapse') && navbarTopOffset < 30) {
+      this.navbarRef.current.classList.remove('top-nav-collapse')
+    }
+    if (!this.navbarRef.current.classList.contains('top-nav-collapse') && navbarTopOffset > 80) {
+      this.navbarRef.current.classList.add('top-nav-collapse')
+    }
+  }
+
+  onWindowScroll() {
+    if (window) {
+      window.requestAnimationFrame(() => { this.toggleNavCollapse() })
+    }
+  }
+
+  componentDidMount() {
+    this.toggleNavCollapse()
+    document.addEventListener('scroll', this.onWindowScroll)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.onWindowScroll)
+  }
+
+  renderHeader(title, isRootPath) {
+    let HeaderElem = 'h3'
+    let headerStyle = {
+      margin: 0
+    }
+    
+    if (isRootPath) {
+      HeaderElem = 'h1'
+      headerStyle = {
+        ...headerStyle,
+        ...scale(1.5)
+      }
+    }
+
+    return (
+      <HeaderElem
+        style={headerStyle}
+      >
+        <Link
+          style={{
+            boxShadow: `none`,
+            textDecoration: `none`,
+            color: `inherit`,
+          }}
+          to={`/`}
+        >
+          {title}
+        </Link>
+      </HeaderElem>
+    )
+  }
+
   render() {
     const { location, title, children } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
-    let header
 
-    if (location.pathname === rootPath) {
-      header = (
-        <h1
-          style={{
-            ...scale(1.5),
-            marginBottom: rhythm(1.5),
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h1>
-      )
-    } else {
-      header = (
-        <h3
-          style={{
-            fontFamily: `Montserrat, sans-serif`,
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h3>
-      )
-    }
+    const LayoutContainer = styled.div`
+      display: flex;
+      flex-direction: column;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: ${rhythm(24)};
+      padding: ${rhythm(3 / 4)};
+      min-height: 600px;
+    `
+
     return (
       <ThemeProvider>
-        <>
-        <div
-          css={css`
-            display: flex;
-            flex-direction: column;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: ${rhythm(24)};
-            padding: ${rhythm(1.5)} ${rhythm(3 / 4)};
-            minHeight: 600;
-          `}
-        >
-          <header
-            css={css`
-              display: flex;
-              justify-content: space-between;
-            `}
+        <LayoutContainer>
+          <nav
+            ref={this.navbarRef}
+            className="layout__header navbar navbar-custom navbar-fixed-top"
+            role="navigation"
           >
-            {header}
+            {this.renderHeader(title, location.pathname === rootPath)}
             <MainNav
               pathName={location.pathname}
             />
-          </header>
+          </nav>
           <main>{children}</main>
-          <footer
-            css={css`
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-            `}
-          >
+          <footer className="layout__footer" >
             <SocialButtons />
             <span
               style={{
@@ -98,8 +115,7 @@ class Layout extends React.Component {
               Copyright © Scott Vickers {new Date().getFullYear()}
             </span>
           </footer>
-        </div>
-        </>
+        </LayoutContainer>
       </ThemeProvider>
     )
   }

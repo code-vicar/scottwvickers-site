@@ -1,9 +1,7 @@
 ---
-layout: post
-section-type: post
-title: Isomorphic React Dockerized
-permalink: 2015/12/30/dockerized-isomorphic-react
 date: '2015-12-30 18:13:49'
+title: Isomorphic React Dockerized
+permalink: /2015/12/30/dockerized-isomorphic-react
 description: Isomorphic React Dockerized
 tags:
 - docker

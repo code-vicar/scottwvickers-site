@@ -1,9 +1,7 @@
 ---
-layout: post
-section-type: post
-title: OSS in the Enterprise
-permalink: 2014/09/01/oss-in-the-enterprise
 date: '2014-09-01 22:14:10'
+title: OSS in the Enterprise
+permalink: /2014/09/01/oss-in-the-enterprise
 description: OSS in the Enterprise
 tags:
 - open-source

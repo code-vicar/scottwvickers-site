@@ -1,8 +1,8 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import * as FaIcons from "react-icons/fa"
-import Flex, { FlexItem } from 'mineral-ui/Flex';
-import Button from 'mineral-ui/Button';
+import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+import * as FaIcons from 'react-icons/fa'
+import Flex, { FlexItem } from 'mineral-ui/Flex'
+import Button from 'mineral-ui/Button'
 
 const SocialButtons = () => {
   const data = useStaticQuery(graphql`

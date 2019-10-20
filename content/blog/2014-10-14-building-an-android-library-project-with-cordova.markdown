@@ -1,9 +1,7 @@
 ---
-layout: post
-section-type: post
-title: Building an android library project with cordova
-permalink: 2014/10/14/building-an-android-library-project-with-cordova
 date: '2014-10-14 00:34:21'
+title: Building an android library project with cordova
+permalink: /2014/10/14/building-an-android-library-project-with-cordova
 description: Building an android library project with cordova
 tags:
 - cordova

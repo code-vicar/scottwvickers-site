@@ -1,9 +1,7 @@
 ---
-layout: post
-section-type: post
-title: Bash script "run as" user
-permalink: 2015/03/18/bash-script-run-as-user
 date: '2015-03-18 16:42:19'
+title: Bash script "run as" user
+permalink: /2015/03/18/bash-script-run-as-user
 description: Bash script "run as" user
 tags:
 - scripting-bash-sudo

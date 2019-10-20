@@ -64,6 +64,7 @@ module.exports = {
         ],
       },
     },
+    `gatsby-plugin-sass`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -76,8 +77,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Mind Palace`,
-        short_name: `Mind Palace`,
+        name: `Scott Vickers Blog`,
+        short_name: `Vickers`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,

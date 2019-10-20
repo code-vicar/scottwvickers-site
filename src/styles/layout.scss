@@ -1,0 +1,15 @@
+@import './navbar';
+
+.layout {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    &__footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

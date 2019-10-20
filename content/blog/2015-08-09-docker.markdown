@@ -1,9 +1,7 @@
 ---
-layout: post
-section-type: post
-title: Docker
-permalink: 2015/08/09/docker
 date: '2015-08-09 22:25:03'
+title: Docker presentation
+permalink: /2015/08/09/docker
 description: Docker presentation
 tags:
 - work
