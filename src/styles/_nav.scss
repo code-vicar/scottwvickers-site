@@ -1,4 +1,4 @@
-@import 'mineral-ui-tokens/index.scss';
+@import './variables';
 
 $navbar-color: #fff;
 $navbar-color-collapsed: #eef1ff;
@@ -12,8 +12,9 @@ $navbar-bottom-border-color: rgba(#aaa, 0.3);
 }
 
 .navbar {
+    min-height: 60px;
     background: $navbar-color;
-    margin: 0 -20px;
+    margin: 0 -$content-side-margin;
     padding: 10px 20px;
     border-bottom: 1px solid $navbar-bottom-border-color;
     text-transform: uppercase;

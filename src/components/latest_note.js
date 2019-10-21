@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 import Text from 'mineral-ui/Text'
 
 const LatestNote = ({ id }) => {
@@ -38,7 +38,14 @@ const LatestNote = ({ id }) => {
         className="offset-anchor"
       />
       <Text fontWeight="extraBold">Latest Note</Text>
-      <Text>{note.frontmatter.date} {note.frontmatter.title}</Text>
+      <Text>
+        {note.frontmatter.date}{' '}
+        <Link
+          to={note.fields.slug}
+        >
+          {note.frontmatter.title}
+        </Link>
+      </Text>
       <p
         style={{
           maxWidth: '600px'

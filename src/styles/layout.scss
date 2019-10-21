@@ -1,12 +1,13 @@
 @import './nav';
+@import './variables';
 
 .layout {
     display: flex;
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: $content-side-margin;
+    padding-left: $content-side-margin;
 
     &__header {
         display: flex;

@@ -16,10 +16,10 @@ export default class Header extends React.Component {
       return
     }
     const navbarTopOffset = this.navbarRef.current.getBoundingClientRect().top + window.pageYOffset
-    if (this.navbarRef.current.classList.contains('top-nav-collapse') && navbarTopOffset < 30) {
+    if (this.navbarRef.current.classList.contains('top-nav-collapse') && navbarTopOffset < 40) {
       this.navbarRef.current.classList.remove('top-nav-collapse')
     }
-    if (!this.navbarRef.current.classList.contains('top-nav-collapse') && navbarTopOffset > 50) {
+    if (!this.navbarRef.current.classList.contains('top-nav-collapse') && navbarTopOffset > 60) {
       this.navbarRef.current.classList.add('top-nav-collapse')
     }
   }
@@ -40,7 +40,11 @@ export default class Header extends React.Component {
   }
 
   render() {
-    const { className, title, location } = this.props
+    const {
+      className,
+      title,
+      location
+    } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
     const classes = [
       'layout__header',
@@ -60,7 +64,9 @@ export default class Header extends React.Component {
           title={title}
           isRootPath={location.pathname === rootPath}
         />
-        <MainNav />
+        <MainNav
+          isRootPath={location.pathname === rootPath}
+        />
       </nav>
     )
   }
