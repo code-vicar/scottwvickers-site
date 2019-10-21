@@ -15,7 +15,7 @@ class About extends React.Component {
         <SEO title="About" />
         <div
           style={{
-            marginBottom: rhythm(1),
+            margin: `${rhythm(1)} 0`,
           }}
         >
           <Text>

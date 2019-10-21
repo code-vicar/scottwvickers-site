@@ -26,7 +26,7 @@ const SocialButtons = () => {
           return (
             <FlexItem key={network.title}>
               <Button as="a"
-                href={ network.url }
+                href={network.url}
                 target="_blank"
                 rel="noopener noreferrer"
               >

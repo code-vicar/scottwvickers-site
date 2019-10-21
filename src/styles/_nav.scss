@@ -1,6 +1,7 @@
 @import 'mineral-ui-tokens/index.scss';
 
-$navbar-color: lighten(#daa520, 20%);
+$navbar-color: #fff;
+$navbar-color-collapsed: #eef1ff;
 $navbar-bottom-border-color: rgba(#aaa, 0.3);
 
 .navbar-fixed-top {
@@ -10,36 +11,41 @@ $navbar-bottom-border-color: rgba(#aaa, 0.3);
     z-index: 1030;
 }
 
-.navbar-custom {
-    margin-bottom: 0;
+.navbar {
+    background: $navbar-color;
+    margin: 0 -20px;
+    padding: 10px 20px;
     border-bottom: 1px solid $navbar-bottom-border-color;
     text-transform: uppercase;
-    
-    /* Fix height limit and scroll for small screen and many items menu */
-    max-height: 100%;
-    overflow-y: auto;
 
     @media(min-width:768px) {
-        padding: 20px 0;
         border-bottom: none;
         letter-spacing: 1px;
-        background: transparent;
         -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
         -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
         transition: background .5s ease-in-out, padding .5s ease-in-out;
         &.top-nav-collapse {
-            overflow: visible;
-            &:before {
-                content: '';
-                background: $navbar-color;
-                position: absolute;
-                z-index: -1;
-                width: 100%;
-                height: 100%;
-            }
-            padding: 0;
-            // background: $navbar-color;
+            background: $navbar-color-collapsed;
+            padding: 0 20px;
             border-bottom: 1px solid rgba($navbar-bottom-border-color, 0.3);
         }
     }
+
+    a {
+      box-shadow: none;
+    }
+}
+
+.nav-brand {
+  margin: 0;
+  font-weight: 900;
+  text-rendering: optimizeLegibility;
+  font-size: 1.4427rem;
+  line-height: 1.1;
+
+  &__link {
+    box-shadow: none;
+    text-decoration: none;
+    color: inherit;
+  }
 }
