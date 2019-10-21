@@ -64,6 +64,67 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-excerpts`,
+      options: {
+        "sources": {
+          "default": {
+            "type": "htmlQuery",
+            "sourceField": "html",
+            "excerptSelector": "html > *",
+            "stripSelector": "a",
+            "elementReplacements": [
+              {
+                "selector": "strong",
+                "replaceWith": "p"
+              },
+              {
+                "selector": "h6",
+                "replaceWith": "p"
+              },
+              {
+                "selector": "h5",
+                "replaceWith": "p"
+              },
+              {
+                "selector": "h4",
+                "replaceWith": "p"
+              },
+              {
+                "selector": "h3",
+                "replaceWith": "p"
+              },
+              {
+                "selector": "h2",
+                "replaceWith": "p"
+              },
+              {
+                "selector": "h1",
+                "replaceWith": "p"
+              },
+            ],
+            "truncate": {
+              "length": 100,
+              "byWords": true,
+              "ellipsis": "…"
+            },
+          }
+        },
+        "sourceSets": {
+          "markdownHtml": [
+            "default"
+          ]
+        },
+        "excerpts": {
+          "snippet": {
+            "type": "html",
+            "nodeTypeSourceSet": {
+              "MarkdownRemark": "markdownHtml"
+            }
+          }
+        }
+      }
+    },
     `gatsby-plugin-sass`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -83,7 +144,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/logs.png`,
       },
     },
     `gatsby-plugin-offline`,

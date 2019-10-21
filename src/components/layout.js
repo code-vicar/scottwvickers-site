@@ -14,7 +14,9 @@ export default ({ location, title, children }) => (
         location={location}
       />
       <main>{children}</main>
-      <Footer className="layout__footer" />
+      <Footer
+        className="layout__footer"
+      />
     </div>
   </ThemeProvider>
 )

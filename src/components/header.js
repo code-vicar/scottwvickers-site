@@ -60,9 +60,7 @@ export default class Header extends React.Component {
           title={title}
           isRootPath={location.pathname === rootPath}
         />
-        <MainNav
-          pathName={location.pathname}
-        />
+        <MainNav />
       </nav>
     )
   }
