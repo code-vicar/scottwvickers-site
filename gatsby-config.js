@@ -1,3 +1,32 @@
+const excerptReplacements = [{
+  "selector": "strong",
+  "replaceWith": "p"
+},
+{
+  "selector": "h6",
+  "replaceWith": "p"
+},
+{
+  "selector": "h5",
+  "replaceWith": "p"
+},
+{
+  "selector": "h4",
+  "replaceWith": "p"
+},
+{
+  "selector": "h3",
+  "replaceWith": "p"
+},
+{
+  "selector": "h2",
+  "replaceWith": "p"
+},
+{
+  "selector": "h1",
+  "replaceWith": "p"
+}]
+
 module.exports = {
   siteMetadata: {
     title: `Vickers`,
@@ -67,59 +96,30 @@ module.exports = {
     {
       resolve: `gatsby-plugin-excerpts`,
       options: {
-        "sources": {
-          "default": {
-            "type": "htmlQuery",
-            "sourceField": "html",
-            "excerptSelector": "html > *",
-            "stripSelector": "a",
-            "elementReplacements": [
-              {
-                "selector": "strong",
-                "replaceWith": "p"
-              },
-              {
-                "selector": "h6",
-                "replaceWith": "p"
-              },
-              {
-                "selector": "h5",
-                "replaceWith": "p"
-              },
-              {
-                "selector": "h4",
-                "replaceWith": "p"
-              },
-              {
-                "selector": "h3",
-                "replaceWith": "p"
-              },
-              {
-                "selector": "h2",
-                "replaceWith": "p"
-              },
-              {
-                "selector": "h1",
-                "replaceWith": "p"
-              },
-            ],
-            "truncate": {
-              "length": 100,
-              "byWords": true,
-              "ellipsis": "…"
+        sources: {
+          default: {
+            type: "htmlQuery",
+            sourceField: "html",
+            excerptSelector: "html > *",
+            stripSelector: "a",
+            elementReplacements: excerptReplacements,
+            truncate: {
+              length: 100,
+              byWords: true,
+              ellipsis: "…"
             },
           }
         },
-        "sourceSets": {
-          "markdownHtml": [
+        sourceSets: {
+          markdownHtml: [
             "default"
           ]
         },
-        "excerpts": {
-          "snippet": {
+        excerpts: {
+          snippet: {
             "type": "html",
-            "nodeTypeSourceSet": {
-              "MarkdownRemark": "markdownHtml"
+            nodeTypeSourceSet: {
+              MarkdownRemark: "markdownHtml"
             }
           }
         }
@@ -147,6 +147,7 @@ module.exports = {
         icon: `content/assets/logs.png`,
       },
     },
+    'gatsby-plugin-emotion',
     'gatsby-plugin-remove-serviceworker',
     `gatsby-plugin-react-helmet`,
     {

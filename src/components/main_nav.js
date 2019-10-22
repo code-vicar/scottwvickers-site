@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import React, { useState, useEffect } from 'react' // eslint-disable-line
-import { Link } from 'gatsby'
 import { jsx, css } from '@emotion/core'
 import { PrimaryNav, NavItem } from 'mineral-ui/Navigation'
 import { ThemeProvider } from 'mineral-ui/themes'
@@ -23,58 +22,32 @@ const navData = [
   }
 ]
 
-const getMenuItems = ({ isRootPath, setPopoverOpen }) => (
-  navData.map(({ title, url }) => {
-    if (!isRootPath) {
-      return (
-        <MenuItem
-          key={title}
-          as={Link}
-          href={`/${url}`}
-        >
-          {title}
-        </MenuItem>
-      )
-    }
-    return (
-      <MenuItem
-        key={title}
-        as="a"
-        href={url}
-        onClick={() => { setPopoverOpen(false) }}
-      >
-        {title}
-      </MenuItem>
-    )
-  })
+const getMenuItems = ({ setPopoverOpen }) => (
+  navData.map(({ title, url }) => (
+    <MenuItem
+      key={title}
+      as="a"
+      href={url}
+      onClick={() => { setPopoverOpen(false) }}
+    >
+      {title}
+    </MenuItem>
+  ))
 )
 
-const getNavItems = ({ isRootPath }) => (
-  navData.map(({ title, url }) => {
-    if (!isRootPath) {
-      return (
-        <NavItem
-          key={title}
-          as={Link}
-          href={`/${url}`}
-        >
-          {title}
-        </NavItem>
-      )
-    }
-    return (
-      <NavItem
-        key={title}
-        as="a"
-        href={url}
-      >
-        {title}
-      </NavItem>
-    )
-  })
+const getNavItems = () => (
+  navData.map(({ title, url }) => (
+    <NavItem
+      key={title}
+      as={"a"}
+      href={`/${url}`}
+    >
+      {title}
+    </NavItem>
+  ))
 )
 
-const MainNav = ({ isRootPath }) => {
+const MainNav = () => {
   const [popoverOpen, setPopoverOpen] = useState(false)
 
   useEffect(() => {
@@ -117,7 +90,7 @@ const MainNav = ({ isRootPath }) => {
           setPopoverOpen={setPopoverOpen}
           content={
             <Menu>
-              {getMenuItems({ isRootPath, setPopoverOpen })}
+              {getMenuItems({ setPopoverOpen })}
             </Menu>
           }
         >
@@ -146,7 +119,7 @@ const MainNav = ({ isRootPath }) => {
           }
         `}
         >
-          {getNavItems({ isRootPath })}
+          {getNavItems()}
         </PrimaryNav>
       </>
     </ThemeProvider>

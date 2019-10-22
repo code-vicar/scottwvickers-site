@@ -46,7 +46,7 @@ const LatestNote = ({ id }) => {
           {note.frontmatter.title}
         </Link>
       </Text>
-      <p
+      <div
         style={{
           maxWidth: '600px'
         }}
