@@ -1,7 +1,11 @@
 import React from 'react'
-import Text from 'mineral-ui/Text'
+import { Text } from 'mineral-ui'
 
-const Contact = ({ id }) => (
+interface Props {
+  id: string;
+}
+
+const Contact: React.FC<Props> = ({ id }) => (
   <>
     <div
       id={id}

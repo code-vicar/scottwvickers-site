@@ -8,10 +8,10 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Image from 'gatsby-image'
-import Text from 'mineral-ui/Text'
+import { Text } from 'mineral-ui'
 import { rhythm } from '../utils/typography'
 
-const Author = () => {
+const Author: React.FC<{}> = () => {
   const data = useStaticQuery(graphql`
     query BioQuery {
       avatar: file(absolutePath: { regex: "/profile-pic.(?:jpg|png)/" }) {
