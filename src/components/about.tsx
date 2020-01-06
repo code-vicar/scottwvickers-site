@@ -25,3 +25,5 @@ const About: React.FC<Props> = ({ id }) => (
     </Text>
   </>
 )
+
+export default About

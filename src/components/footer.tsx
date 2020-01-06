@@ -1,7 +1,11 @@
 import React from 'react'
 import SocialButtons from './social_buttons'
 
-export default ({ className }) => {
+interface Props {
+  className?: string
+}
+
+const Footer: React.FC<Props> = ({ className }) => {
   return (
     <footer
       className={className}
@@ -13,3 +17,5 @@ export default ({ className }) => {
     </footer>
   )
 }
+
+export default Footer

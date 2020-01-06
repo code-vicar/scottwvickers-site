@@ -8,10 +8,6 @@
     "@emotion/core": "^10.0.27",
     "@emotion/is-prop-valid": "^0.7.3",
     "@emotion/styled": "^10.0.27",
-    "@types/node": "^13.1.4",
-    "@types/react": "^16.9.17",
-    "@types/react-dom": "^16.9.4",
-    "@types/typography": "^0.16.3",
     "emotion-theming": "^10.0.27",
     "gatsby": "2.18.17",
     "gatsby-image": "^2.2.37",
@@ -49,6 +45,12 @@
     "typescript": "^3.7.4",
     "typography": "^0.16.19",
     "typography-theme-wordpress-2016": "^0.16.19"
+  },
+  "devDependencies": {
+    "@types/node": "^13.1.4",
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
+    "@types/typography": "^0.16.3"
   },
   "homepage": "https://scottwvickers.com",
   "keywords": [

@@ -1,10 +1,11 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import * as FaIcons from 'react-icons/fa'
-import Flex, { FlexItem } from 'mineral-ui/Flex'
-import Button from 'mineral-ui/Button'
+import { Flex, FlexItem } from 'mineral-ui'
+import { Button } from 'mineral-ui'
+import { ISiteMeta } from '../interfaces/siteMetadata'
 
-const SocialButtons = () => {
+const SocialButtons: React.FC<{}> = () => {
   const data = useStaticQuery(graphql`
     query SocialButtonsQuery {
       site {
@@ -17,12 +18,13 @@ const SocialButtons = () => {
       }
     }
   `)
-  const social = data.site.siteMetadata.social
+  const siteMeta: ISiteMeta = data.site.siteMetadata
+  const social = siteMeta.social
   return (
     <Flex>
       {
         social.map(network => {
-          const Icon = FaIcons[`Fa${network.title}`];
+          const Icon = (FaIcons as { [key: string]: React.ElementType })[`Fa${network.title}`];
           return (
             <FlexItem key={network.title}>
               <Button as="a"
