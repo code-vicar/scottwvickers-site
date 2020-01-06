@@ -1,7 +1,7 @@
 import React from 'react'
 import { ThemeProvider } from 'mineral-ui/themes'
-import Header from './header'
-import Footer from './footer'
+import { Header } from './header'
+import { Footer } from './footer'
 
 import '../styles/layout.scss'
 

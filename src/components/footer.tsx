@@ -5,7 +5,7 @@ interface Props {
   className?: string
 }
 
-const Footer: React.FC<Props> = ({ className }) => {
+export const Footer: React.FC<Props> = ({ className }) => {
   return (
     <footer
       className={className}
@@ -17,5 +17,3 @@ const Footer: React.FC<Props> = ({ className }) => {
     </footer>
   )
 }
-
-export default Footer

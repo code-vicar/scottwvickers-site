@@ -5,7 +5,7 @@ interface Props {
   id: string;
 }
 
-const Contact: React.FC<Props> = ({ id }) => (
+export const Contact: React.FC<Props> = ({ id }) => (
   <>
     <div
       id={id}
@@ -15,5 +15,3 @@ const Contact: React.FC<Props> = ({ id }) => (
     <Text>scott.w.vickers@gmail.com</Text>
   </>
 )
-
-export default Contact

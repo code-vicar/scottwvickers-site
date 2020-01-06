@@ -11,7 +11,7 @@ import Image from 'gatsby-image'
 import { Text } from 'mineral-ui'
 import { rhythm } from '../utils/typography'
 
-const Author: React.FC<{}> = () => {
+export const Author: React.FC<{}> = () => {
   const data = useStaticQuery(graphql`
     query BioQuery {
       avatar: file(absolutePath: { regex: "/profile-pic.(?:jpg|png)/" }) {
@@ -54,5 +54,3 @@ const Author: React.FC<{}> = () => {
     </div>
   )
 }
-
-export default Author

@@ -1,7 +1,12 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-export default ({ title, isRootPath }) => {
+interface Props {
+  title: string;
+  isRootPath: boolean;
+}
+
+export const NavBrand: React.FC<Props> = ({ title, isRootPath }) => {
   const BrandElem = isRootPath ? 'h1' : 'h3'
   return (
     <BrandElem

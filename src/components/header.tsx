@@ -1,10 +1,19 @@
 import React from 'react'
 
-import MainNav from './main_nav'
-import NavBrand from './nav-brand'
+import { MainNav } from './main_nav'
+import { NavBrand } from './nav-brand'
+import { WindowLocation } from '@reach/router'
 
-export default class Header extends React.Component {
-  constructor(props) {
+interface Props {
+  className?: string;
+  title: string;
+  location: WindowLocation;
+}
+
+export class Header extends React.Component<Props> {
+  private navbarRef: React.RefObject<HTMLElement>;
+
+  constructor(props: Props) {
     super(props)
     this.navbarRef = React.createRef()
     this.toggleNavCollapse = this.toggleNavCollapse.bind(this)

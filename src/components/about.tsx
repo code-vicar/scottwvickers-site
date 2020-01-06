@@ -5,7 +5,7 @@ interface Props {
   id: string;
 }
 
-const About: React.FC<Props> = ({ id }) => (
+export const About: React.FC<Props> = ({ id }) => (
   <>
     <div
       id={id}
@@ -25,5 +25,3 @@ const About: React.FC<Props> = ({ id }) => (
     </Text>
   </>
 )
-
-export default About
