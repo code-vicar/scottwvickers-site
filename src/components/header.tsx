@@ -2,7 +2,7 @@ import React from 'react'
 
 import { MainNav } from './main_nav'
 import { NavBrand } from './nav-brand'
-import { WindowLocation } from '@reach/router'
+import { WindowLocation } from '../interfaces'
 
 interface Props {
   className?: string;

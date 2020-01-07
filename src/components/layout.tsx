@@ -1,11 +1,17 @@
 import React from 'react'
-import { ThemeProvider } from 'mineral-ui/themes'
+import { ThemeProvider } from 'mineral-ui'
 import { Header } from './header'
 import { Footer } from './footer'
+import { WindowLocation } from '../interfaces'
 
 import '../styles/layout.scss'
 
-export default ({
+interface Props {
+  title: string;
+  location: WindowLocation;
+}
+
+export const Layout: React.FC<Props> = ({
   location,
   title,
   children

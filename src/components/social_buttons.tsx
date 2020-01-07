@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import * as FaIcons from 'react-icons/fa'
 import { Flex, FlexItem } from 'mineral-ui'
 import { Button } from 'mineral-ui'
-import { ISiteMeta } from '../interfaces/siteMetadata'
+import { ISiteMetaData } from '../interfaces/ISiteQuery'
 
 const SocialButtons: React.FC<{}> = () => {
   const data = useStaticQuery(graphql`
@@ -18,7 +18,7 @@ const SocialButtons: React.FC<{}> = () => {
       }
     }
   `)
-  const siteMeta: ISiteMeta = data.site.siteMetadata
+  const siteMeta: ISiteMetaData = data.site.siteMetadata
   const social = siteMeta.social
   return (
     <Flex>

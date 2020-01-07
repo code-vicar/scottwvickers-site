@@ -1,8 +1,12 @@
 import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
-import Text from 'mineral-ui/Text'
+import { Text } from 'mineral-ui'
 
-const LatestNote = ({ id }) => {
+interface Props {
+  id: string
+}
+
+export const LatestNote: React.FC<Props> = ({ id }) => {
   const data = useStaticQuery(graphql`
     query LatestNoteQuery {
       allMarkdownRemark(
@@ -57,5 +61,3 @@ const LatestNote = ({ id }) => {
     </>
   )
 }
-
-export default LatestNote
