@@ -6,9 +6,9 @@ interface Props {
   id: string
 }
 
-export const LatestNote: React.FC<Props> = ({ id }) => {
+export const NotesPeek: React.FC<Props> = ({ id }) => {
   const data = useStaticQuery(graphql`
-    query LatestNoteQuery {
+    query NotesPeekQuery {
       allMarkdownRemark(
         sort: { fields: [frontmatter___date], order: DESC }
         limit: 1
@@ -58,6 +58,13 @@ export const LatestNote: React.FC<Props> = ({ id }) => {
           __html: note.snippet,
         }}
       />
+      <div>
+        <Link
+          to={'/notes'}
+        >
+          See All Notes
+        </Link>
+      </div>
     </>
   )
 }

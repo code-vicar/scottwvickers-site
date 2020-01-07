@@ -5,7 +5,7 @@ import { Layout } from '../components/layout'
 import { About } from '../components/about'
 import { Contact } from '../components/contact'
 import { SEO } from '../components/seo'
-import { LatestNote } from '../components/latest_note'
+import { NotesPeek } from '../components/notes_peek'
 import { ISiteMetaData, IGatsbyPageProps } from '../interfaces'
 
 interface Props extends IGatsbyPageProps {
@@ -28,7 +28,7 @@ export const SiteIndex: React.FC<Props> = ({ data, location }) => {
         <About id="about" />
       </Section>
       <Section>
-        <LatestNote id="notes" />
+        <NotesPeek id="notes" />
       </Section>
       <Section>
         <Contact id="contact" />

@@ -3,7 +3,12 @@ import { Menu, MenuItem, NavItem, Popover } from 'mineral-ui'
 import { ThemedPrimaryNav } from '../themed/PrimaryNav'
 import { FaBars } from 'react-icons/fa'
 
-const navData = [
+interface INavItem {
+  title: string;
+  url: string;
+}
+
+const navData: INavItem[] = [
   {
     title: 'About',
     url: '#about'
@@ -18,10 +23,11 @@ const navData = [
   }
 ]
 
-const getMenuItems = ({ setPopoverOpen }: {
+const getMenuItems = ({ setPopoverOpen, navItems }: {
   setPopoverOpen: (value: React.SetStateAction<boolean>) => void;
+  navItems: INavItem[]
 }) => (
-    navData.map(({ title, url }) => (
+    navItems.map(({ title, url }) => (
       <MenuItem
         key={title}
         as="a"
@@ -33,8 +39,8 @@ const getMenuItems = ({ setPopoverOpen }: {
     ))
   )
 
-const getNavItems = () => (
-  navData.map(({ title, url }) => (
+const getNavItems = ({ navItems }: { navItems: INavItem[] }) => (
+  navItems.map(({ title, url }) => (
     <NavItem
       key={title}
       as={"a"}
@@ -63,6 +69,8 @@ export const MainNav: React.FC<{}> = () => {
     }
   }, [])
 
+  const navItems = navData
+
   return (
     <>
       <Popover
@@ -78,7 +86,7 @@ export const MainNav: React.FC<{}> = () => {
         setPopoverOpen={setPopoverOpen}
         content={
           <Menu>
-            {getMenuItems({ setPopoverOpen })}
+            {getMenuItems({ setPopoverOpen, navItems })}
           </Menu>
         }
       >
@@ -107,7 +115,7 @@ export const MainNav: React.FC<{}> = () => {
           }
         }}
       >
-        {getNavItems()}
+        {getNavItems({ navItems })}
       </ThemedPrimaryNav>
     </>
   )

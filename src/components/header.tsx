@@ -63,6 +63,7 @@ export class Header extends React.Component<Props> {
     if (className) {
       classes.push(className)
     }
+    const isRootPath = location.pathname === rootPath
     return (
       <nav
         className={classes.join(' ')}
@@ -71,7 +72,7 @@ export class Header extends React.Component<Props> {
       >
         <NavBrand
           title={title}
-          isRootPath={location.pathname === rootPath}
+          isRootPath={isRootPath}
         />
         <MainNav />
       </nav>
