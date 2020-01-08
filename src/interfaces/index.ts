@@ -1,4 +1,5 @@
 export * from './IGatsbyPageProps'
 export * from './ISiteQuery'
+export * from './IMainNavComponent'
 export * from './IMarkdownQuery'
 export * from './IBlogPostContext'

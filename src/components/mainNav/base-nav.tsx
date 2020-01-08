@@ -1,57 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { Menu, MenuItem, NavItem, Popover } from 'mineral-ui'
-import { ThemedPrimaryNav } from '../themed/PrimaryNav'
 import { FaBars } from 'react-icons/fa'
+import { Menu, Popover } from 'mineral-ui'
+import { ThemedPrimaryNav } from '../../themed/PrimaryNav'
 
-interface INavItem {
+export interface INavItem {
   title: string;
   url: string;
 }
 
-const navData: INavItem[] = [
-  {
-    title: 'About',
-    url: '#about'
-  },
-  {
-    title: 'Notes',
-    url: '#notes'
-  },
-  {
-    title: 'Contact',
-    url: '#contact'
-  }
-]
-
-const getMenuItems = ({ setPopoverOpen, navItems }: {
-  setPopoverOpen: (value: React.SetStateAction<boolean>) => void;
+interface Props {
   navItems: INavItem[]
-}) => (
-    navItems.map(({ title, url }) => (
-      <MenuItem
-        key={title}
-        as="a"
-        href={url}
-        onClick={() => { setPopoverOpen(false) }}
-      >
-        {title}
-      </MenuItem>
-    ))
-  )
+  onRenderMenuItem: (navItem: INavItem, setPopoverOpen: React.Dispatch<React.SetStateAction<boolean>>) => JSX.Element
+  onRenderNavItem: (navItem: INavItem) => JSX.Element
+}
 
-const getNavItems = ({ navItems }: { navItems: INavItem[] }) => (
-  navItems.map(({ title, url }) => (
-    <NavItem
-      key={title}
-      as={"a"}
-      href={`/${url}`}
-    >
-      {title}
-    </NavItem>
-  ))
-)
-
-export const MainNav: React.FC<{}> = () => {
+export const BaseNav: React.FC<Props> = ({ navItems, onRenderMenuItem, onRenderNavItem }) => {
   const [popoverOpen, setPopoverOpen] = useState(false)
 
   useEffect(() => {
@@ -69,8 +32,6 @@ export const MainNav: React.FC<{}> = () => {
     }
   }, [])
 
-  const navItems = navData
-
   return (
     <>
       <Popover
@@ -86,7 +47,7 @@ export const MainNav: React.FC<{}> = () => {
         setPopoverOpen={setPopoverOpen}
         content={
           <Menu>
-            {getMenuItems({ setPopoverOpen, navItems })}
+            {navItems.map(navItem => onRenderMenuItem(navItem, setPopoverOpen))}
           </Menu>
         }
       >
@@ -115,7 +76,7 @@ export const MainNav: React.FC<{}> = () => {
           }
         }}
       >
-        {getNavItems({ navItems })}
+        {navItems.map(navItem => onRenderNavItem(navItem))}
       </ThemedPrimaryNav>
     </>
   )

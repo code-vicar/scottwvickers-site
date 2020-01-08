@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import { Layout } from '../components/layout'
 import { SEO } from '../components/seo'
 import { ISiteMetaData, IGatsbyPageProps } from '../interfaces'
+import { HomeNav } from '../components/mainNav/home-nav'
 
 interface Props extends IGatsbyPageProps {
   data: {
@@ -18,6 +19,7 @@ const NotFoundPage: React.FC<Props> = ({ data, location }) => {
     <Layout
       location={location}
       title={siteTitle}
+      MainNav={HomeNav}
     >
       <SEO title="404: Not Found" />
       <h1>Not Found</h1>

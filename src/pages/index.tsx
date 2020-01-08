@@ -6,6 +6,7 @@ import { About } from '../components/about'
 import { Contact } from '../components/contact'
 import { SEO } from '../components/seo'
 import { NotesPeek } from '../components/notes_peek'
+import { HomeNav } from '../components/mainNav/home-nav'
 import { ISiteMetaData, IGatsbyPageProps } from '../interfaces'
 
 interface Props extends IGatsbyPageProps {
@@ -22,6 +23,7 @@ export const SiteIndex: React.FC<Props> = ({ data, location }) => {
     <Layout
       location={location}
       title={siteTitle}
+      MainNav={HomeNav}
     >
       <SEO title="Home" />
       <Section>

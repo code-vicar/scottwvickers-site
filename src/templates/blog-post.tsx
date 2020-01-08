@@ -4,6 +4,7 @@ import { Author as Bio } from '../components/author'
 import { Layout } from '../components/layout'
 import { SEO } from '../components/seo'
 import { rhythm, scale } from '../utils/typography'
+import { BlogNav } from '../components/mainNav/blog-nav'
 import {
   ISiteMetaData,
   IBlogPostContext,
@@ -36,7 +37,7 @@ const BlogPostTemplate: React.FC<Props> = ({ data, pageContext, location }) => {
   const { previous, next } = pageContext
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={siteTitle} MainNav={BlogNav}>
       <SEO
         title={post.frontmatter.title || post.fields.slug}
         description={post.frontmatter.description || post.excerpt}
