@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import { Text } from 'mineral-ui'
+import { Typography } from '@material-ui/core'
 import { Layout } from '../components/layout'
 import { SEO } from '../components/seo'
 import { rhythm } from '../utils/typography'
@@ -38,7 +38,7 @@ const AllNotes: React.FC<Props> = ({ data, location }) => {
       title={siteTitle}
     >
       <SEO title="All Notes" />
-      <Text as="h2">All Notes</Text>
+      <Typography component="h2">All Notes</Typography>
       {notes.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (

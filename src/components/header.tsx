@@ -17,10 +17,10 @@ export const Header: React.FC<Props> = ({ className, title, location, MainNav })
       return
     }
     const navbarTopOffset = navbarRef.current.getBoundingClientRect().top + window.pageYOffset
-    if (navbarRef.current.classList.contains('top-nav-collapse') && navbarTopOffset < 40) {
+    if (navbarRef.current.classList.contains('top-nav-collapse') && navbarTopOffset < 20) {
       navbarRef.current.classList.remove('top-nav-collapse')
     }
-    if (!navbarRef.current.classList.contains('top-nav-collapse') && navbarTopOffset > 60) {
+    if (!navbarRef.current.classList.contains('top-nav-collapse') && navbarTopOffset > 40) {
       navbarRef.current.classList.add('top-nav-collapse')
     }
   }

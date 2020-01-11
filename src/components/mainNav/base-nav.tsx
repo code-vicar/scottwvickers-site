@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { FaBars } from 'react-icons/fa'
-import { Menu, Popover } from 'mineral-ui'
-import { ThemedPrimaryNav } from '../../themed/PrimaryNav'
+import { useTheme } from '@material-ui/core/styles';
+import { Menu, IconButton, useMediaQuery } from '@material-ui/core';
 
 export interface INavItem {
   title: string;
@@ -16,6 +16,9 @@ interface Props {
 
 export const BaseNav: React.FC<Props> = ({ navItems, onRenderMenuItem, onRenderNavItem }) => {
   const [popoverOpen, setPopoverOpen] = useState(false)
+  const anchorRef = useRef<null | HTMLButtonElement>(null)
+  const theme = useTheme();
+  const gtSmall = useMediaQuery(theme.breakpoints.up('sm'));
 
   useEffect(() => {
     function outsideElementClick(e?: MouseEvent) {
@@ -32,52 +35,40 @@ export const BaseNav: React.FC<Props> = ({ navItems, onRenderMenuItem, onRenderN
     }
   }, [])
 
-  return (
-    <>
-      <Popover
-        id="mainNavPopover"
-        css={{
-          '@media (min-width: 768px)': {
-            display: 'none',
-            visibility: 'hidden'
-          }
-        }}
-        isOpen={popoverOpen}
-        placement="left"
-        setPopoverOpen={setPopoverOpen}
-        content={
-          <Menu>
-            {navItems.map(navItem => onRenderMenuItem(navItem, setPopoverOpen))}
-          </Menu>
-        }
-      >
-        <div
-          style={{
-            padding: '20px',
-            margin: '-20px'
-          }}
-          onClick={() => {
-            setPopoverOpen(true)
-          }}
-        >
-          <FaBars
-            style={{
-              verticalAlign: 'middle'
-            }}
-          />
-        </div>
-      </Popover>
-      <ThemedPrimaryNav
-        minimal
-        css={{
-          '@media (max-width: 768px)': {
-            display: 'none',
-            visibility: 'hidden'
-          }
-        }}
-      >
+  // on screens > sm breakpoint render the nav button
+  if (gtSmall) {
+    return (
+      <span>
         {navItems.map(navItem => onRenderNavItem(navItem))}
-      </ThemedPrimaryNav>
-    </>
+      </span>
+    )
+  }
+  // on screens <= sm breakpoint render a menu button with nav in popover
+  return (
+    <div id="mainNavPopover">
+      <IconButton
+        ref={anchorRef}
+        aria-label="Menu"
+        style={{
+          padding: '20px',
+          margin: '-20px'
+        }}
+        onClick={() => {
+          setPopoverOpen(true)
+        }}
+      >
+        <FaBars
+          style={{
+            verticalAlign: 'middle'
+          }}
+        />
+      </IconButton>
+      <Menu
+        anchorEl={anchorRef.current}
+        open={popoverOpen}
+      >
+        {navItems.map(navItem => onRenderMenuItem(navItem, setPopoverOpen))}
+      </Menu>
+    </div>
   )
 }

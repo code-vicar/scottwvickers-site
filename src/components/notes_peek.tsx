@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
-import { Text } from 'mineral-ui'
+import { Typography } from '@material-ui/core'
 
 interface Props {
   id: string
@@ -41,15 +41,21 @@ export const NotesPeek: React.FC<Props> = ({ id }) => {
         id={id}
         className="offset-anchor"
       />
-      <Text fontWeight="extraBold">Latest Note</Text>
-      <Text>
+      <Typography
+        style={{
+          fontWeight: 'bold'
+        }}
+      >
+        Latest Note
+      </Typography>
+      <Typography>
         {note.frontmatter.date}{' '}
         <Link
           to={note.fields.slug}
         >
           {note.frontmatter.title}
         </Link>
-      </Text>
+      </Typography>
       <div
         style={{
           maxWidth: '600px'

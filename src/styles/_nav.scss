@@ -15,19 +15,20 @@ $navbar-bottom-border-color: rgba(#aaa, 0.3);
     min-height: 60px;
     background: $navbar-color;
     margin: 0 -$content-side-margin;
-    padding: 10px 20px;
+    padding: 0 20px;
     border-bottom: 1px solid $navbar-bottom-border-color;
     text-transform: uppercase;
 
-    @media(min-width:768px) {
+    // material-ui 'sm' breakpoint
+    @media(min-width:600px) {
         border-bottom: none;
         letter-spacing: 1px;
-        -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
-        -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
-        transition: background .5s ease-in-out, padding .5s ease-in-out;
+        -webkit-transition: background .5s ease-in-out, min-height 1s ease-in-out;
+        -moz-transition: background .5s ease-in-out, min-height 1s ease-in-out;
+        transition: background .5s ease-in-out, min-height 1s ease-in-out;
         &.top-nav-collapse {
+            min-height: 50px;
             background: $navbar-color-collapsed;
-            padding: 0 20px;
             border-bottom: 1px solid rgba($navbar-bottom-border-color, 0.3);
         }
     }

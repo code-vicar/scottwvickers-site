@@ -1,5 +1,5 @@
 import React from 'react'
-import { ThemeProvider } from 'mineral-ui'
+// import { ThemeProvider } from '@material-ui/core/styles'; TODO: enable dark theme
 import { Header } from './header'
 import { Footer } from './footer'
 import { WindowLocation, IMainNavComponent } from '../interfaces'
@@ -18,18 +18,22 @@ export const Layout: React.FC<Props> = ({
   children,
   MainNav
 }) => (
-    <ThemeProvider>
-      <div className="layout">
-        <Header
-          className="layout__header"
-          title={title}
-          location={location}
-          MainNav={MainNav}
-        />
-        <main>{children}</main>
-        <Footer
-          className="layout__footer"
-        />
-      </div>
-    </ThemeProvider>
+    <div className="layout">
+      <Header
+        className="layout__header"
+        title={title}
+        location={location}
+        MainNav={MainNav}
+      />
+      <main
+        style={{
+          marginTop: '20px'
+        }}
+      >
+        {children}
+      </main>
+      <Footer
+        className="layout__footer"
+      />
+    </div>
   )

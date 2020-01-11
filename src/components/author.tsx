@@ -8,7 +8,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Image from 'gatsby-image'
-import { Text } from 'mineral-ui'
+import { Typography } from '@material-ui/core'
 import { rhythm } from '../utils/typography'
 
 export const Author: React.FC<{}> = () => {
@@ -50,7 +50,13 @@ export const Author: React.FC<{}> = () => {
           borderRadius: `50%`,
         }}
       />
-      <Text fontWeight="extraBold">{author}</Text>
+      <Typography
+        style={{
+          fontWeight: 'bold'
+        }}
+      >
+        {author}
+      </Typography>
     </div>
   )
 }

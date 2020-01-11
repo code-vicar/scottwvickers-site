@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from 'mineral-ui'
+import { Typography } from '@material-ui/core'
 
 interface Props {
   id: string;
@@ -11,17 +11,19 @@ export const About: React.FC<Props> = ({ id }) => (
       id={id}
       className="offset-anchor"
     />
-    <Text fontWeight="extraBold">
+    <Typography style={{
+      fontWeight: "bold"
+    }} >
       About
-    </Text>
-    <Text>
+    </Typography>
+    <Typography>
       My name is Scott Vickers.
-    </Text>
-    <Text>
+    </Typography>
+    <Typography>
       I am a software developer currently working at Microsoft.
-    </Text>
-    <Text>
+    </Typography>
+    <Typography>
       This is my site.
-    </Text>
+    </Typography>
   </>
 )

@@ -1,5 +1,5 @@
-import React from 'react'
-import { MenuItem, NavItem } from 'mineral-ui'
+import React, { MouseEvent } from 'react'
+import { MenuItem, Link } from '@material-ui/core'
 import { navigate } from 'gatsby'
 import { BaseNav, INavItem } from './base-nav'
 import { IMainNavComponent } from '../../interfaces'
@@ -14,7 +14,7 @@ const navItems: INavItem[] = [
 const renderMenuItem = ({ title, url }: INavItem, setPopoverOpen: React.Dispatch<React.SetStateAction<boolean>>) => (
   <MenuItem
     key={title}
-    as="a"
+    component="a"
     href={url}
     onClick={(e: MouseEvent) => {
       e.preventDefault();
@@ -27,9 +27,8 @@ const renderMenuItem = ({ title, url }: INavItem, setPopoverOpen: React.Dispatch
 )
 
 const renderNavItem = ({ title, url }: INavItem) => (
-  <NavItem
+  <Link
     key={title}
-    as={"a"}
     href={url}
     onClick={(e: MouseEvent) => {
       e.preventDefault();
@@ -37,7 +36,7 @@ const renderNavItem = ({ title, url }: INavItem) => (
     }}
   >
     {title}
-  </NavItem>
+  </Link>
 )
 
 export const BlogNav: IMainNavComponent = () => (

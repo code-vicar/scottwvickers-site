@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from 'mineral-ui'
+import { Typography } from '@material-ui/core'
 
 interface Props {
   id: string;
@@ -11,7 +11,7 @@ export const Contact: React.FC<Props> = ({ id }) => (
       id={id}
       className="offset-anchor"
     />
-    <Text fontWeight="extraBold">Contact Me</Text>
-    <Text>scott.w.vickers@gmail.com</Text>
+    <Typography style={{ fontWeight: 'bold' }} >Contact Me</Typography>
+    <Typography>scott.w.vickers@gmail.com</Typography>
   </>
 )

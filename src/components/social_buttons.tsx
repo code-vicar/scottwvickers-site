@@ -1,9 +1,18 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import * as FaIcons from 'react-icons/fa'
-import { Flex, FlexItem } from 'mineral-ui'
-import { Button } from 'mineral-ui'
+import { Grid, Button } from '@material-ui/core'
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import { ISiteMetaData } from '../interfaces/ISiteQuery'
+
+const useButtonStyle = makeStyles(() => createStyles({
+  root: {
+    minWidth: 'unset',
+    padding: '10px',
+    margin: '5px',
+    borderRadius: '0'
+  }
+}))
 
 const SocialButtons: React.FC<{}> = () => {
   const data = useStaticQuery(graphql`
@@ -20,25 +29,34 @@ const SocialButtons: React.FC<{}> = () => {
   `)
   const siteMeta: ISiteMetaData = data.site.siteMetadata
   const social = siteMeta.social
+  const buttonStyles = useButtonStyle()
   return (
-    <Flex>
+    <Grid
+      container
+      direction="row"
+      justify="center"
+    >
       {
         social.map(network => {
           const Icon = (FaIcons as { [key: string]: React.ElementType })[`Fa${network.title}`];
           return (
-            <FlexItem key={network.title}>
-              <Button as="a"
+            <Grid item key={network.title}>
+              <Button
+                classes={buttonStyles}
+                disableElevation={true}
+                variant="contained"
+                component="a"
                 href={network.url}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Icon />
               </Button>
-            </FlexItem>
+            </Grid>
           )
         })
       }
-    </Flex>
+    </Grid>
   )
 }
 

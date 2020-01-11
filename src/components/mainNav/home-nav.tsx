@@ -1,7 +1,8 @@
 import React from 'react'
-import { MenuItem, NavItem } from 'mineral-ui'
+import { MenuItem, Button, Link, LinkClassKey } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseNav, INavItem } from './base-nav'
-import { IMainNavComponent } from '../../interfaces'
+import { IMainNavComponent, Select } from '../../interfaces'
 
 const navItems: INavItem[] = [
   {
@@ -21,23 +22,47 @@ const navItems: INavItem[] = [
 const renderMenuItem = ({ title, url }: INavItem, setPopoverOpen: React.Dispatch<React.SetStateAction<boolean>>) => (
   <MenuItem
     key={title}
-    as="a"
-    href={url}
-    onClick={() => { setPopoverOpen(false) }}
   >
-    {title}
+    <Button
+      component="a"
+      style={{
+        width: '100%'
+      }}
+      disableElevation={true}
+      href={url}
+      onClick={() => { setPopoverOpen(false) }}
+    >
+      {title}
+    </Button>
   </MenuItem>
 )
 
-const renderNavItem = ({ title, url }: INavItem) => (
-  <NavItem
-    key={title}
-    as={"a"}
-    href={`/${url}`}
-  >
-    {title}
-  </NavItem>
-)
+const HomeLink: React.FC<{ title: string, href: string }> = ({ title, href }) => {
+  const useStyles = makeStyles<Theme, {}, Select<LinkClassKey, 'root'>>(() => ({
+    root: {
+      margin: '10px'
+    }
+  }))
+  return (
+    <Link
+      classes={useStyles()}
+      key={title}
+      href={href}
+    >
+      {title}
+    </Link>
+  )
+}
+
+const renderNavItem = ({ title, url }: INavItem) => {
+  return (
+    <HomeLink
+      key={title}
+      href={url}
+      title={title}
+    />
+  )
+}
 
 export const HomeNav: IMainNavComponent = () => (
   <BaseNav
