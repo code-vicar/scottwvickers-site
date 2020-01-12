@@ -3,16 +3,17 @@ import { useDisqus } from './use-disqus'
 import { DiscussionEmbed } from 'disqus-react'
 
 export const CommentThread: React.FC<{
-  noteId: string,
+  noteSlug: string,
   noteTitle: string
-}> = ({ noteId, noteTitle }) => {
-  const { shortname, config } = useDisqus()
+}> = ({ noteSlug, noteTitle }) => {
+  const { shortname, siteUrl } = useDisqus()
+  const fullUrl = `${siteUrl}${noteSlug}`
   return (
     <DiscussionEmbed
       shortname={shortname}
       config={{
-        ...config,
-        identifier: noteId,
+        url: fullUrl,
+        identifier: fullUrl,
         title: noteTitle
       }}
     />

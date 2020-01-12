@@ -100,7 +100,7 @@ const BlogPostTemplate: React.FC<Props> = ({ data, pageContext, location }) => {
           </li>
         </ul>
       </nav>
-      <CommentThread noteId={post.fields.slug} noteTitle={post.frontmatter.title || post.fields.slug} />
+      <CommentThread noteSlug={post.fields.slug} noteTitle={post.frontmatter.title || post.fields.slug} />
     </Layout>
   )
 }

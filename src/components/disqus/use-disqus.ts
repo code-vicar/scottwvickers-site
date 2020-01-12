@@ -7,17 +7,11 @@ interface SiteUrlQuery {
   }
 }
 
-export interface DisqusConfig {
-  url: string
-  identifier: string
-  title: string
-}
-
 export const shortname = 'pushmodo'
 
 export const useDisqus = (): {
   shortname: string
-  config: Pick<DisqusConfig, 'url'>
+  siteUrl: string
 } => {
   const {
     site: {
@@ -37,8 +31,6 @@ export const useDisqus = (): {
 
   return {
     shortname,
-    config: {
-      url: siteUrl
-    }
+    siteUrl
   }
 }
