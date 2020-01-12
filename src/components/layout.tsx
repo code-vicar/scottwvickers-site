@@ -27,7 +27,7 @@ export const Layout: React.FC<Props> = ({
       />
       <main
         style={{
-          marginTop: '20px'
+          marginTop: '60px'
         }}
       >
         {children}
