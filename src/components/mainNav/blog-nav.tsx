@@ -1,5 +1,5 @@
 import React, { MouseEvent } from 'react'
-import { MenuItem, Link } from '@material-ui/core'
+import { MenuItem, Link, Button } from '@material-ui/core'
 import { navigate } from 'gatsby'
 import { BaseNav, INavItem } from './base-nav'
 import { IMainNavComponent } from '../../interfaces'
@@ -14,15 +14,22 @@ const navItems: INavItem[] = [
 const renderMenuItem = ({ title, url }: INavItem, setPopoverOpen: React.Dispatch<React.SetStateAction<boolean>>) => (
   <MenuItem
     key={title}
-    component="a"
-    href={url}
-    onClick={(e: MouseEvent) => {
-      e.preventDefault();
-      setPopoverOpen(false)
-      navigate(url)
-    }}
   >
-    {title}
+    <Button
+      component="a"
+      style={{
+        width: '100%'
+      }}
+      disableElevation={true}
+      href={url}
+      onClick={(e: MouseEvent) => {
+        e.preventDefault();
+        setPopoverOpen(false)
+        navigate(url)
+      }}
+    >
+      {title}
+    </Button>
   </MenuItem>
 )
 

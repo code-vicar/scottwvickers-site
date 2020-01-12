@@ -5,6 +5,7 @@ import { Layout } from '../components/layout'
 import { SEO } from '../components/seo'
 import { rhythm, scale } from '../utils/typography'
 import { BlogNav } from '../components/mainNav/blog-nav'
+import { CommentThread } from '../components/disqus/comment-thread'
 import {
   ISiteMetaData,
   IBlogPostContext,
@@ -94,11 +95,12 @@ const BlogPostTemplate: React.FC<Props> = ({ data, pageContext, location }) => {
             {next && (
               <Link to={next.fields.slug} rel="next">
                 {next.frontmatter.title || next.fields.slug} →
-                </Link>
+              </Link>
             )}
           </li>
         </ul>
       </nav>
+      <CommentThread noteId={post.fields.slug} noteTitle={post.frontmatter.title || post.fields.slug} />
     </Layout>
   )
 }
