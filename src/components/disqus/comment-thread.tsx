@@ -8,12 +8,13 @@ export const CommentThread: React.FC<{
 }> = ({ noteSlug, noteTitle }) => {
   const { shortname, siteUrl } = useDisqus()
   const fullUrl = `${siteUrl}${noteSlug}`
+  const identifier = noteSlug.startsWith('/') ? noteSlug.substr(1) : noteSlug
   return (
     <DiscussionEmbed
       shortname={shortname}
       config={{
         url: fullUrl,
-        identifier: fullUrl,
+        identifier,
         title: noteTitle
       }}
     />
