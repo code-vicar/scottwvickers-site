@@ -19,6 +19,16 @@ const navItems: INavItem[] = [
   }
 ]
 
+const smoothScroll = (anchor: string) => {
+  window.history.pushState({}, anchor, anchor);
+  const scrollAnchor = document.querySelector(anchor);
+  if (scrollAnchor) {
+    scrollAnchor.scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+}
+
 const renderMenuItem = ({ title, url }: INavItem, setPopoverOpen: React.Dispatch<React.SetStateAction<boolean>>) => (
   <MenuItem
     key={title}
@@ -30,7 +40,11 @@ const renderMenuItem = ({ title, url }: INavItem, setPopoverOpen: React.Dispatch
       }}
       disableElevation={true}
       href={url}
-      onClick={() => { setPopoverOpen(false) }}
+      onClick={(e: React.SyntheticEvent) => {
+        e.preventDefault();
+        setPopoverOpen(false)
+        smoothScroll(url)
+      }}
     >
       {title}
     </Button>
@@ -48,6 +62,10 @@ const HomeLink: React.FC<{ title: string, href: string }> = ({ title, href }) =>
       classes={useStyles()}
       key={title}
       href={href}
+      onClick={(e: React.SyntheticEvent) => {
+        e.preventDefault();
+        smoothScroll(href)
+      }}
     >
       {title}
     </Link>
