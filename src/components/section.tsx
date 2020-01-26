@@ -1,15 +1,22 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { makeStyles } from '@material-ui/core/styles';
 
-const StyledDiv = styled.div({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center'
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 })
 
-export const Section: React.FC<{}> = ({ children }) => (
-  <StyledDiv>
-    {children}
-  </StyledDiv>
-)
+export const Section: React.FC<{}> = ({ children }) => {
+  const classes = useStyles()
+  return (
+    <div
+      className={classes.root}
+    >
+      {children}
+    </div>
+  )
+}

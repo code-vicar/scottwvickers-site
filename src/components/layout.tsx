@@ -1,10 +1,32 @@
 import React from 'react'
-// import { ThemeProvider } from '@material-ui/core/styles'; TODO: enable dark theme
+import { makeStyles, createStyles } from '@material-ui/core/styles'
 import { Header } from './header'
 import { Footer } from './footer'
 import { WindowLocation, IMainNavComponent } from '../interfaces'
+import { layout } from '../styles/constants'
 
-import '../styles/layout.scss'
+const useStyles = makeStyles(() => createStyles({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    paddingRight: layout.contentSideMargin,
+    paddingLeft: layout.contentSideMargin
+  },
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexWrap: 'wrap'
+  },
+  footer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '10px 0'
+  }
+}))
 
 interface Props {
   title: string;
@@ -17,10 +39,12 @@ export const Layout: React.FC<Props> = ({
   title,
   children,
   MainNav
-}) => (
-    <div className="layout">
+}) => {
+  const classes = useStyles()
+  return (
+    <div className={classes.root}>
       <Header
-        className="layout__header"
+        className={classes.header}
         title={title}
         location={location}
         MainNav={MainNav}
@@ -33,7 +57,8 @@ export const Layout: React.FC<Props> = ({
         {children}
       </main>
       <Footer
-        className="layout__footer"
+        className={classes.footer}
       />
     </div>
   )
+}

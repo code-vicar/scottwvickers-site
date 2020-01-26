@@ -147,8 +147,8 @@ module.exports = {
         icon: `content/assets/logs.png`,
       },
     },
-    'gatsby-plugin-emotion',
-    'gatsby-plugin-remove-serviceworker',
+    'gatsby-plugin-mui-theme-provider',
+    'gatsby-plugin-material-ui',
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-typography`,
