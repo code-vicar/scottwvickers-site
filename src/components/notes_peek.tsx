@@ -57,9 +57,6 @@ export const NotesPeek: React.FC<Props> = ({ id }) => {
         </Link>
       </Typography>
       <div
-        style={{
-          maxWidth: '600px'
-        }}
         dangerouslySetInnerHTML={{
           __html: note.snippet,
         }}

@@ -42,8 +42,12 @@ const renderMenuItem = ({ title, url }: INavItem, setPopoverOpen: React.Dispatch
       href={url}
       onClick={(e: React.SyntheticEvent) => {
         e.preventDefault();
-        setPopoverOpen(false)
-        smoothScroll(url)
+        setPopoverOpen(false);
+        // setPopoverOpen state change/re-render interrupts smoothscroll
+        // so put the smoothscroll on the next animation frame
+        requestAnimationFrame(() => {
+          smoothScroll(url);
+        })
       }}
     >
       {title}

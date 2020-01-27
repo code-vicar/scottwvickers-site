@@ -5,7 +5,7 @@ import { Footer } from './footer'
 import { WindowLocation, IMainNavComponent } from '../interfaces'
 import { layout } from '../styles/constants'
 
-const useStyles = makeStyles(() => createStyles({
+const useStyles = makeStyles(theme => createStyles({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -19,6 +19,18 @@ const useStyles = makeStyles(() => createStyles({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexWrap: 'wrap'
+  },
+  main: {
+    marginTop: '60px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: `${theme.breakpoints.values.sm}px`
+    },
+    [theme.breakpoints.up('md')]: {
+      maxWidth: `${theme.breakpoints.values.md}px`
+    }
   },
   footer: {
     display: 'flex',
@@ -50,9 +62,7 @@ export const Layout: React.FC<Props> = ({
         MainNav={MainNav}
       />
       <main
-        style={{
-          marginTop: '60px'
-        }}
+        className={classes.main}
       >
         {children}
       </main>

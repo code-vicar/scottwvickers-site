@@ -26,9 +26,21 @@ const useStyles = makeStyles(theme => createStyles({
     [theme.breakpoints.up('sm')]: {
       borderBottom: 'none',
       letterSpacing: '1px',
-      '-webkit-transition': 'background .5s ease-in-out, min-height 1s ease-in-out',
-      '-moz-transition': 'background .5s ease-in-out, min-height 1s ease-in-out',
-      transition: 'background .5s ease-in-out, min-height 1s ease-in-out'
+      '-webkit-transition': 'background .5s ease-in-out, min-height .5s ease-in-out',
+      '-moz-transition': 'background .5s ease-in-out, min-height .5s ease-in-out',
+      transition: 'background .5s ease-in-out, min-height .5s ease-in-out'
+    }
+  },
+  navContainer: {
+    width: '100%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    maxWidth: '100%',
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: `${theme.breakpoints.values.sm}px`
+    },
+    [theme.breakpoints.up('md')]: {
+      maxWidth: `${theme.breakpoints.values.md}px`
     }
   },
   collapsed: {
@@ -40,7 +52,10 @@ const useStyles = makeStyles(theme => createStyles({
   },
   fixedTop: {
     borderWidth: '0 0 1px',
-    position: 'sticky',
+    position: 'fixed',
+    display: 'flex',
+    left: 0,
+    right: 0,
     top: 0,
     zIndex: 1030
   }
@@ -55,10 +70,10 @@ export const Header: React.FC<Props> = ({ className, title, location, MainNav })
       return
     }
     const navbarTopOffset = navbarRef.current.getBoundingClientRect().top + window.pageYOffset
-    if (navbarRef.current.classList.contains(styles.collapsed) && navbarTopOffset < 20) {
+    if (navbarRef.current.classList.contains(styles.collapsed) && navbarTopOffset <= navbar.collapseOffset) {
       navbarRef.current.classList.remove(styles.collapsed)
     }
-    if (!navbarRef.current.classList.contains(styles.collapsed) && navbarTopOffset > 40) {
+    if (!navbarRef.current.classList.contains(styles.collapsed) && navbarTopOffset > navbar.collapseOffset) {
       navbarRef.current.classList.add(styles.collapsed)
     }
   }
@@ -78,22 +93,26 @@ export const Header: React.FC<Props> = ({ className, title, location, MainNav })
   }, [])
 
   const rootPath = `${__PATH_PREFIX__}/`
-  const classes = [styles.root, styles.fixedTop]
+  const classes = [styles.navContainer]
   if (className) {
     classes.push(className)
   }
   const isRootPath = location.pathname === rootPath
   return (
     <nav
-      className={classes.join(' ')}
+      className={[styles.root, styles.fixedTop].join(' ')}
       ref={navbarRef}
       role="navigation"
     >
-      <NavBrand
-        title={title}
-        isRootPath={isRootPath}
-      />
-      {MainNav ? <MainNav /> : null}
+      <section
+        className={classes.join(' ')}
+      >
+        <NavBrand
+          title={title}
+          isRootPath={isRootPath}
+        />
+        {MainNav ? <MainNav /> : null}
+      </section>
     </nav>
   )
 }
