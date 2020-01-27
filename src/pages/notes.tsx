@@ -58,7 +58,7 @@ const AllNotes: React.FC<Props> = ({ data, location }) => {
             <section>
               <p
                 dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
+                  __html: node.excerpt,
                 }}
               />
             </section>
