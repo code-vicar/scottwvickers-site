@@ -58,7 +58,7 @@ export const NotesPeek: React.FC<Props> = ({ id }) => {
       </Typography>
       <div
         dangerouslySetInnerHTML={{
-          __html: note.snippet,
+          __html: note.snippet
         }}
       />
       <div>

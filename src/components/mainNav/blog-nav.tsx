@@ -23,7 +23,7 @@ const renderMenuItem = ({ title, url }: INavItem, setPopoverOpen: React.Dispatch
       disableElevation={true}
       href={url}
       onClick={(e: MouseEvent) => {
-        e.preventDefault();
+        e.preventDefault()
         setPopoverOpen(false)
         navigate(url)
       }}
@@ -38,7 +38,7 @@ const renderNavItem = ({ title, url }: INavItem) => (
     key={title}
     href={url}
     onClick={(e: MouseEvent) => {
-      e.preventDefault();
+      e.preventDefault()
       navigate(url)
     }}
   >

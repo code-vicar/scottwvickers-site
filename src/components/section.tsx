@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
   root: {
@@ -10,13 +10,7 @@ const useStyles = makeStyles({
   }
 })
 
-export const Section: React.FC<{}> = ({ children }) => {
+export const Section: React.FC = ({ children }) => {
   const classes = useStyles()
-  return (
-    <div
-      className={classes.root}
-    >
-      {children}
-    </div>
-  )
+  return <div className={classes.root}>{children}</div>
 }

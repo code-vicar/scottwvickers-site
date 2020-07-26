@@ -11,7 +11,7 @@ import Image from 'gatsby-image'
 import { Typography } from '@material-ui/core'
 import { rhythm } from '../utils/typography'
 
-export const Author: React.FC<{}> = () => {
+export const Author: React.FC = () => {
   const data = useStaticQuery(graphql`
     query BioQuery {
       avatar: file(absolutePath: { regex: "/profile-pic.(?:jpg|png)/" }) {
@@ -44,10 +44,10 @@ export const Author: React.FC<{}> = () => {
           marginRight: rhythm(1 / 2),
           marginBottom: 0,
           minWidth: 50,
-          borderRadius: `100%`,
+          borderRadius: '100%'
         }}
         imgStyle={{
-          borderRadius: `50%`,
+          borderRadius: '50%'
         }}
       />
       <Typography

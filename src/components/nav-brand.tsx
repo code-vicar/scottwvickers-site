@@ -31,7 +31,7 @@ export const NavBrand: React.FC<Props> = ({ title, isRootPath }) => {
     >
       <Link
         className={classes.link}
-        to={`/`}
+        to={'/'}
       >
         {title}
       </Link>

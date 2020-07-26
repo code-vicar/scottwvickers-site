@@ -36,44 +36,44 @@ export const SEO: React.FC<Props> = ({ description = '', lang = 'en', meta = [],
   const metaDescription = description || site.siteMetadata.description
   const defaultMeta: MetaItem[] = [
     {
-      name: `description`,
-      content: metaDescription,
+      name: 'description',
+      content: metaDescription
     },
     {
-      property: `og:title`,
-      content: title,
+      property: 'og:title',
+      content: title
     },
     {
-      property: `og:description`,
-      content: metaDescription,
+      property: 'og:description',
+      content: metaDescription
     },
     {
-      property: `og:type`,
-      content: `website`,
+      property: 'og:type',
+      content: 'website'
     },
     {
-      name: `twitter:card`,
-      content: `summary`,
+      name: 'twitter:card',
+      content: 'summary'
     },
     {
-      name: `twitter:creator`,
-      content: site.siteMetadata.author,
+      name: 'twitter:creator',
+      content: site.siteMetadata.author
     },
     {
-      name: `twitter:title`,
-      content: title,
+      name: 'twitter:title',
+      content: title
     },
     {
-      name: `twitter:description`,
-      content: metaDescription,
-    },
+      name: 'twitter:description',
+      content: metaDescription
+    }
   ]
   const extendedMeta: MetaItem[] = defaultMeta.concat(meta)
 
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}

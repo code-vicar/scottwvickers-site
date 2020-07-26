@@ -20,19 +20,20 @@ const navItems: INavItem[] = [
 ]
 
 const smoothScroll = (anchor: string) => {
-  window.history.pushState({}, anchor, anchor);
-  const scrollAnchor = document.querySelector(anchor);
+  window.history.pushState({}, anchor, anchor)
+  const scrollAnchor = document.querySelector(anchor)
   if (scrollAnchor) {
     scrollAnchor.scrollIntoView({
       behavior: 'smooth'
-    });
+    })
   }
 }
 
-const renderMenuItem = ({ title, url }: INavItem, setPopoverOpen: React.Dispatch<React.SetStateAction<boolean>>) => (
-  <MenuItem
-    key={title}
-  >
+const renderMenuItem = (
+  { title, url }: INavItem,
+  setPopoverOpen: React.Dispatch<React.SetStateAction<boolean>>
+) => (
+  <MenuItem key={title}>
     <Button
       component="a"
       style={{
@@ -41,12 +42,12 @@ const renderMenuItem = ({ title, url }: INavItem, setPopoverOpen: React.Dispatch
       disableElevation={true}
       href={url}
       onClick={(e: React.SyntheticEvent) => {
-        e.preventDefault();
-        setPopoverOpen(false);
+        e.preventDefault()
+        setPopoverOpen(false)
         // setPopoverOpen state change/re-render interrupts smoothscroll
         // so put the smoothscroll on the next animation frame
         requestAnimationFrame(() => {
-          smoothScroll(url);
+          smoothScroll(url)
         })
       }}
     >
@@ -55,19 +56,26 @@ const renderMenuItem = ({ title, url }: INavItem, setPopoverOpen: React.Dispatch
   </MenuItem>
 )
 
-const HomeLink: React.FC<{ title: string, href: string }> = ({ title, href }) => {
-  const useStyles = makeStyles<Theme, {}, Select<LinkClassKey, 'root'>>(() => ({
+const HomeLink: React.FC<{ title: string; href: string }> = ({
+  title,
+  href
+}) => {
+  const useStyles = makeStyles<
+    Theme,
+    Record<string, unknown>,
+    Select<LinkClassKey, 'root'>
+  >(() => ({
     root: {
       margin: '10px'
     }
   }))
   return (
     <Link
-      classes={useStyles()}
+      classes={useStyles({})}
       key={title}
       href={href}
       onClick={(e: React.SyntheticEvent) => {
-        e.preventDefault();
+        e.preventDefault()
         smoothScroll(href)
       }}
     >
@@ -77,13 +85,7 @@ const HomeLink: React.FC<{ title: string, href: string }> = ({ title, href }) =>
 }
 
 const renderNavItem = ({ title, url }: INavItem) => {
-  return (
-    <HomeLink
-      key={title}
-      href={url}
-      title={title}
-    />
-  )
+  return <HomeLink key={title} href={url} title={title} />
 }
 
 export const HomeNav: IMainNavComponent = () => (

@@ -47,7 +47,7 @@ const BlogPostTemplate: React.FC<Props> = ({ data, pageContext, location }) => {
           <h1
             style={{
               marginTop: rhythm(1),
-              marginBottom: 0,
+              marginBottom: 0
             }}
           >
             {post.frontmatter.title}
@@ -55,8 +55,8 @@ const BlogPostTemplate: React.FC<Props> = ({ data, pageContext, location }) => {
           <p
             style={{
               ...scale(-1 / 5),
-              display: `block`,
-              marginBottom: rhythm(1),
+              display: 'block',
+              marginBottom: rhythm(1)
             }}
           >
             {post.frontmatter.date}
@@ -65,7 +65,7 @@ const BlogPostTemplate: React.FC<Props> = ({ data, pageContext, location }) => {
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
-            marginBottom: rhythm(1),
+            marginBottom: rhythm(1)
           }}
         />
         <footer>
@@ -76,11 +76,11 @@ const BlogPostTemplate: React.FC<Props> = ({ data, pageContext, location }) => {
       <nav>
         <ul
           style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+            listStyle: 'none',
+            padding: 0
           }}
         >
           <li>

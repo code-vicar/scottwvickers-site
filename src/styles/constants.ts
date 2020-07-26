@@ -1,5 +1,5 @@
 export const layout = {
-  contentSideMargin: '15px',
+  contentSideMargin: '15px'
 }
 
 export const navbar = {

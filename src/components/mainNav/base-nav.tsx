@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { FaBars } from 'react-icons/fa'
-import { useTheme } from '@material-ui/core/styles';
-import { Menu, IconButton, useMediaQuery } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles'
+import { Menu, IconButton, useMediaQuery } from '@material-ui/core'
 
 export interface INavItem {
   title: string;
@@ -17,11 +17,11 @@ interface Props {
 export const BaseNav: React.FC<Props> = ({ navItems, onRenderMenuItem, onRenderNavItem }) => {
   const [popoverOpen, setPopoverOpen] = useState(false)
   const anchorRef = useRef<null | HTMLButtonElement>(null)
-  const theme = useTheme();
-  const gtSmall = useMediaQuery(theme.breakpoints.up('sm'));
+  const theme = useTheme()
+  const gtSmall = useMediaQuery(theme.breakpoints.up('sm'))
 
   useEffect(() => {
-    function outsideElementClick(e?: MouseEvent) {
+    function outsideElementClick (e?: MouseEvent) {
       if (!e || !e.target || !(e.target as Element).closest) {
         return
       }

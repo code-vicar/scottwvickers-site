@@ -16,27 +16,21 @@ interface Props extends IGatsbyPageProps {
 const NotFoundPage: React.FC<Props> = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   return (
-    <Layout
-      location={location}
-      title={siteTitle}
-      MainNav={HomeNav}
-    >
+    <Layout location={location} title={siteTitle} MainNav={HomeNav}>
       <SEO title="404: Not Found" />
       <h1>Not Found</h1>
+      <p>Why are you still procrastinating?</p>
       <p>
-        Why are you still procrastinating?
-        </p>
-      <p>
-        Check
-          {' '}
+        Check{' '}
         <a
           href="http://waitbutwhy.com/2013/11/how-to-beat-procrastination.html"
           target="_blank"
           rel="noopener noreferrer"
         >
           this
-          </a> out if you want to stop looking for pages that don't exist
-        </p>
+        </a>{' '}
+        {"out if you want to stop looking for pages that don't exist"}
+      </p>
     </Layout>
   )
 }
