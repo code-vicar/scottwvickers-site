@@ -1,5 +1,6 @@
-const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path')
+const { createFilePath } = require('gatsby-source-filesystem')
 
 const getSlugValue = (node, getNode) => {
   if (node.frontmatter.permalink) {
@@ -11,7 +12,7 @@ const getSlugValue = (node, getNode) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const blogPost = path.resolve(`./src/templates/blog-post.tsx`)
+  const blogPost = path.resolve('./src/templates/blog-post.tsx')
   const result = await graphql(
     `
       {
@@ -51,20 +52,20 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         slug: post.node.fields.slug,
         previous,
-        next,
-      },
+        next
+      }
     })
   })
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
-  if (node.internal.type === `MarkdownRemark`) {
+  if (node.internal.type === 'MarkdownRemark') {
     const value = getSlugValue(node, getNode)
     createNodeField({
-      name: `slug`,
+      name: 'slug',
       node,
-      value,
+      value
     })
   }
 }

@@ -19,7 +19,8 @@
   "plugins": ["react", "@typescript-eslint", "eslint-plugin-react"],
   "rules": {
     "jsx-no-multiline-js": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "space-before-function-paren": "off"
   },
   "settings": {
     "react": {
