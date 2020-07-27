@@ -6,6 +6,7 @@ import { MenuItem } from './MenuItem'
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
+      margin: '20px 0 0 0',
       maxHeight: '400px',
       overflow: 'auto'
     }

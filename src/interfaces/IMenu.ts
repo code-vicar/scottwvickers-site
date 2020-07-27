@@ -1,7 +1,7 @@
 export interface IMenuItem {
   name: string
   description: string
-  index: number
+  index?: number
 }
 
 export interface IMenu {
