@@ -13,11 +13,22 @@ const useStyles = makeStyles(() =>
   })
 )
 
-export const MenuItems: React.FC = () => {
+export interface IMenuItemsProps {
+  className?: string
+}
+
+export const MenuItems: React.FC<IMenuItemsProps> = ({ className }) => {
   const menuContext = React.useContext(MenuContextType)
   const styles = useStyles()
+  const combinedClassName = React.useMemo(() => {
+    const classNames = [styles.root]
+    if (className) {
+      classNames.push(className)
+    }
+    return classNames.join(' ')
+  }, [styles.root, className])
   return (
-    <dl className={styles.root}>
+    <dl className={combinedClassName}>
       {menuContext.items.map(item => (
         <MenuItem
           key={item.name}

@@ -16,7 +16,11 @@ const useStyles = makeStyles(() =>
   })
 )
 
-export const AddMenuItem: React.FC = () => {
+export interface IAddMenuItemProps {
+  className?: string
+}
+
+export const AddMenuItem: React.FC<IAddMenuItemProps> = ({ className }) => {
   const styles = useStyles()
   const menuContext = React.useContext(MenuContextType)
   const [editMode, setEditMode] = React.useState<boolean>(false)
@@ -103,7 +107,12 @@ export const AddMenuItem: React.FC = () => {
 
   if (!editMode) {
     return (
-      <Button variant="contained" color="primary" onClick={startEdit}>
+      <Button
+        className={className}
+        variant="contained"
+        color="primary"
+        onClick={startEdit}
+      >
         Add new menu item
       </Button>
     )
@@ -111,7 +120,7 @@ export const AddMenuItem: React.FC = () => {
 
   return (
     <Grid
-      className={styles.form}
+      className={`${className || ''} ${styles.form}`}
       container
       component="form"
       direction="column"
