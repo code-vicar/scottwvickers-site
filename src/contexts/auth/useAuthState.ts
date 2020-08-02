@@ -1,6 +1,25 @@
 import React from "react"
+import { AuthenticationResult } from "@azure/msal-browser"
 import { IAuth, AuthState, AuthStatus } from "../../interfaces/IAuth"
-import { signIn, signOut } from "../../microsoftGraph"
+import { isSSR } from "../../utils"
+
+let msal: {
+  signIn: () => Promise<AuthenticationResult>
+  signOut: (username: string) => Promise<void>
+}
+if (isSSR()) {
+  msal = {
+    signIn: () => Promise.resolve(({} as unknown) as AuthenticationResult),
+    signOut: () => Promise.resolve()
+  }
+} else {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const actualMsal = require("../../microsoftGraph")
+  msal = {
+    signIn: actualMsal.signIn,
+    signOut: actualMsal.signOut
+  }
+}
 
 export const useAuthState: (initialUsername?: string) => IAuth = (initialUsername) => {
   const [authState, setAuthState] = React.useState<AuthState>({
@@ -20,7 +39,7 @@ export const useAuthState: (initialUsername?: string) => IAuth = (initialUsernam
       status: AuthStatus.Loading
     })
     try {
-      const newSignIn = await signIn()
+      const newSignIn = await msal.signIn()
       setAuthState({
         status: AuthStatus.Ready,
         username: newSignIn.account.username
@@ -32,7 +51,7 @@ export const useAuthState: (initialUsername?: string) => IAuth = (initialUsernam
         error: e
       })
     }
-  }, [signIn])
+  }, [msal.signIn])
 
   const signOutCB = React.useCallback(async () => {
     if (!username) {
@@ -42,7 +61,7 @@ export const useAuthState: (initialUsername?: string) => IAuth = (initialUsernam
       status: AuthStatus.Loading
     })
     try {
-      await signOut(username)
+      await msal.signOut(username)
       setAuthState({
         status: AuthStatus.Ready,
         username: undefined
@@ -54,7 +73,7 @@ export const useAuthState: (initialUsername?: string) => IAuth = (initialUsernam
         error: e
       })
     }
-  }, [signOut, username])
+  }, [msal.signOut, username])
 
   return React.useMemo(() => ({
     authState,

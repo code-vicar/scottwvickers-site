@@ -1,4 +1,4 @@
-import { AccountInfo, LogLevel, Configuration } from "@azure/msal-browser"
+import { AccountInfo, LogLevel } from "@azure/msal-browser"
 import { BaseAuthRequest, SilentFlowRequest } from "@azure/msal-common"
 
 import { isIE } from "../utils/isIE"
@@ -6,7 +6,7 @@ import { isIE } from "../utils/isIE"
 // Config object to be passed to Msal on creation.
 // For a full list of msal.js configuration parameters,
 // visit https://azuread.github.io/microsoft-authentication-library-for-js/docs/msal/modules/_authenticationparameters_.html
-export const msalConfig: Configuration = {
+export const msalConfig = {
   auth: {
     clientId: "c128ff80-10ac-4985-9b0f-f807473ce4eb",
     authority: "https://login.microsoftonline.com/common",

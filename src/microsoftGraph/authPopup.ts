@@ -7,10 +7,9 @@ import {
 } from "@azure/msal-browser"
 import { SilentFlowRequest } from "@azure/msal-common"
 
-import { isSSR } from "../utils"
 import { msalConfig, loginRequest, CustomTokenRequest } from "./msalConfig"
 
-const myMSALObj = isSSR() ? ({} as unknown) as PublicClientApplication : new PublicClientApplication(msalConfig)
+const myMSALObj = new PublicClientApplication(msalConfig)
 
 export async function signIn(): Promise<AuthenticationResult> {
   const response = await myMSALObj.loginPopup(loginRequest)
