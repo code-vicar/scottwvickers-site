@@ -1,5 +1,7 @@
+import { isSSR } from "./isSSR"
+
 export const isIE: () => boolean = () => {
-  if (typeof window === "undefined") {
+  if (isSSR()) {
     return false
   }
   return window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1

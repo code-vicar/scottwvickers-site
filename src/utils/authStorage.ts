@@ -1,7 +1,9 @@
+import { isSSR } from "../utils"
+
 const AuthStorageKey = "username"
 
 export const saveUsername: (username?: string) => void = username => {
-  if (typeof window === "undefined") {
+  if (isSSR()) {
     return
   }
   if (!username) {
@@ -12,7 +14,7 @@ export const saveUsername: (username?: string) => void = username => {
 }
 
 export const loadUsername: () => string | undefined = () => {
-  if (typeof window === "undefined") {
+  if (isSSR()) {
     return undefined
   }
   const username = window.localStorage.getItem(AuthStorageKey)

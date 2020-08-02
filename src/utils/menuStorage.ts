@@ -1,4 +1,5 @@
 import { IMenuItem } from "../interfaces"
+import { isSSR } from "../utils"
 
 const serializeMenu: (menu: readonly IMenuItem[]) => string = menu => {
   return JSON.stringify(menu)
@@ -7,7 +8,7 @@ const serializeMenu: (menu: readonly IMenuItem[]) => string = menu => {
 const MenuStorageKey = "menu"
 
 export const saveMenu: (menu: readonly IMenuItem[]) => void = menu => {
-  if (typeof window === "undefined") {
+  if (isSSR()) {
     return
   }
   const serializedMenu = serializeMenu(menu)
@@ -15,7 +16,7 @@ export const saveMenu: (menu: readonly IMenuItem[]) => void = menu => {
 }
 
 export const loadMenu: () => readonly IMenuItem[] = () => {
-  if (typeof window === "undefined") {
+  if (isSSR()) {
     return []
   }
   const serializedMenu = window.localStorage.getItem(MenuStorageKey)
