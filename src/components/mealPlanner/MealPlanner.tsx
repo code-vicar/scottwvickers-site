@@ -1,7 +1,7 @@
 import React from "react"
-import { createStyles, Typography, makeStyles } from "@material-ui/core"
-import { AuthProvider, AuthButton } from "../auth"
-import { AddMenuItem, MenuProvider, MenuItems } from "../menu"
+import { createStyles, makeStyles } from "@material-ui/core"
+import { AuthProvider } from "../auth"
+import { AddMenuItem, MenuHeader, MenuProvider, MenuItems } from "../menu"
 
 enum GridAreas {
   menu = "menu",
@@ -45,23 +45,7 @@ export const MealPlanner: React.FC = () => {
       <MenuProvider>
         <section className={styles.root}>
           <div className={styles.header}>
-            <div
-              style={{
-                display: "flex"
-              }}
-            >
-              <div style={{
-                flex: "1 1 auto"
-              }}>
-                <Typography component="h2">Menu Items</Typography>
-              </div>
-              <div style={{
-                flex: "1 1 auto",
-                alignSelf: "end"
-              }}>
-                <AuthButton />
-              </div>
-            </div>
+            <MenuHeader />
           </div>
           <div className={styles.menu}>
             <MenuItems />
