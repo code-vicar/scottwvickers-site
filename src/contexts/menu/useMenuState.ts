@@ -1,5 +1,5 @@
-import React from 'react'
-import { IMenu, IMenuItem } from '../../interfaces/IMenu'
+import React from "react"
+import { IMenu, IMenuItem } from "../../interfaces/IMenu"
 
 export const useMenuState: (items: readonly IMenuItem[]) => IMenu = items => {
   const [menuItems, setMenuItems] = React.useState<readonly IMenuItem[]>(items)

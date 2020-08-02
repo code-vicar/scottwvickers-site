@@ -1,16 +1,16 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { Typography } from '@material-ui/core'
-import { Layout } from '../components/layout'
-import { SEO } from '../components/seo'
-import { MealPlanner } from '../components/mealPlanner'
+import React from "react"
+import { graphql } from "gatsby"
+import { Typography } from "@material-ui/core"
+import { Layout } from "../components/layout"
+import { SEO } from "../components/seo"
+import { MealPlanner } from "../components/mealPlanner"
 
-import { ISiteMetaData, IGatsbyPageProps } from '../interfaces'
+import { ISiteMetaData, IGatsbyPageProps } from "../interfaces"
 
 interface Props extends IGatsbyPageProps {
   data: {
     site: {
-      siteMetadata: Pick<ISiteMetaData, 'title'>
+      siteMetadata: Pick<ISiteMetaData, "title">
     }
   }
 }

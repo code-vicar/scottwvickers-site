@@ -1,5 +1,5 @@
-import React from 'react'
-import SocialButtons from './social_buttons'
+import React from "react"
+import SocialButtons from "./social_buttons"
 
 interface Props {
   className?: string

@@ -20,7 +20,8 @@
   "rules": {
     "jsx-no-multiline-js": "off",
     "react/prop-types": "off",
-    "space-before-function-paren": "off"
+    "space-before-function-paren": "off",
+    "quotes": ["error", "double"]
   },
   "settings": {
     "react": {

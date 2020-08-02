@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link, useStaticQuery, graphql } from 'gatsby'
-import { Typography } from '@material-ui/core'
+import React from "react"
+import { Link, useStaticQuery, graphql } from "gatsby"
+import { Typography } from "@material-ui/core"
 
 interface Props {
   id: string
@@ -43,13 +43,13 @@ export const NotesPeek: React.FC<Props> = ({ id }) => {
       />
       <Typography
         style={{
-          fontWeight: 'bold'
+          fontWeight: "bold"
         }}
       >
         Latest Note
       </Typography>
       <Typography>
-        {note.frontmatter.date}{' '}
+        {note.frontmatter.date}{" "}
         <Link
           to={note.fields.slug}
         >
@@ -63,7 +63,7 @@ export const NotesPeek: React.FC<Props> = ({ id }) => {
       />
       <div>
         <Link
-          to={'/notes'}
+          to={"/notes"}
         >
           See All Notes
         </Link>

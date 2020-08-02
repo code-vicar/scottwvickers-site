@@ -1,42 +1,42 @@
-import React from 'react'
-import { makeStyles, createStyles } from '@material-ui/core/styles'
-import { Header } from './header'
-import { Footer } from './footer'
-import { WindowLocation, IMainNavComponent } from '../interfaces'
-import { layout } from '../styles/constants'
+import React from "react"
+import { makeStyles, createStyles } from "@material-ui/core/styles"
+import { Header } from "./header"
+import { Footer } from "./footer"
+import { WindowLocation, IMainNavComponent } from "../interfaces"
+import { layout } from "../styles/constants"
 
 const useStyles = makeStyles(theme => createStyles({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    display: "flex",
+    flexDirection: "column",
+    marginLeft: "auto",
+    marginRight: "auto",
     paddingRight: layout.contentSideMargin,
     paddingLeft: layout.contentSideMargin
   },
   header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexWrap: 'wrap'
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexWrap: "wrap"
   },
   main: {
-    marginTop: '60px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
+    marginTop: "60px",
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
       maxWidth: `${theme.breakpoints.values.sm}px`
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up("md")]: {
       maxWidth: `${theme.breakpoints.values.md}px`
     }
   },
   footer: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '10px 0'
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "10px 0"
   }
 }))
 

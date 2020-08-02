@@ -1,12 +1,12 @@
-import React from 'react'
+import React from "react"
 import {
   Button,
   createStyles,
   Grid,
   TextField,
   makeStyles
-} from '@material-ui/core'
-import { MenuContextType } from '../../contexts/menu'
+} from "@material-ui/core"
+import { MenuContextType } from "../../contexts/menu"
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -25,13 +25,13 @@ export const AddMenuItem: React.FC<IAddMenuItemProps> = ({ className }) => {
   const menuContext = React.useContext(MenuContextType)
   const [editMode, setEditMode] = React.useState<boolean>(false)
 
-  const nameDefaultHelperText = 'What do you call this menu item?'
+  const nameDefaultHelperText = "What do you call this menu item?"
   const [nameField, setName] = React.useState<{
     value: string
     error: boolean
     helperText: string | undefined
   }>({
-    value: '',
+    value: "",
     error: false,
     helperText: nameDefaultHelperText
   })
@@ -41,7 +41,7 @@ export const AddMenuItem: React.FC<IAddMenuItemProps> = ({ className }) => {
     value: string
     error: boolean
     helperText: string | undefined
-  }>({ value: '', error: false, helperText: descriptionDefaultHelperText })
+  }>({ value: "", error: false, helperText: descriptionDefaultHelperText })
 
   const onNameChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,12 +70,12 @@ export const AddMenuItem: React.FC<IAddMenuItemProps> = ({ className }) => {
 
   const exitEdit = React.useCallback(() => {
     setName({
-      value: '',
+      value: "",
       error: false,
       helperText: nameDefaultHelperText
     })
     setDescription({
-      value: '',
+      value: "",
       error: false,
       helperText: descriptionDefaultHelperText
     })
@@ -87,14 +87,14 @@ export const AddMenuItem: React.FC<IAddMenuItemProps> = ({ className }) => {
       setName({
         value: nameField.value,
         error: true,
-        helperText: 'You must provide a name'
+        helperText: "You must provide a name"
       })
       return
     } else if (menuContext.items.some(item => item.name === nameField.value)) {
       setName({
         value: nameField.value,
         error: true,
-        helperText: 'A menu item with that name already exists'
+        helperText: "A menu item with that name already exists"
       })
       return
     }
@@ -120,7 +120,7 @@ export const AddMenuItem: React.FC<IAddMenuItemProps> = ({ className }) => {
 
   return (
     <Grid
-      className={`${className || ''} ${styles.form}`}
+      className={`${className || ""} ${styles.form}`}
       container
       component="form"
       direction="column"

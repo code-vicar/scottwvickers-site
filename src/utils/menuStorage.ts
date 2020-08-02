@@ -1,13 +1,13 @@
-import { IMenuItem } from '../interfaces'
+import { IMenuItem } from "../interfaces"
 
 const serializeMenu: (menu: readonly IMenuItem[]) => string = menu => {
   return JSON.stringify(menu)
 }
 
-const MenuStorageKey = 'menu'
+const MenuStorageKey = "menu"
 
 export const saveMenu: (menu: readonly IMenuItem[]) => void = menu => {
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     return
   }
   const serializedMenu = serializeMenu(menu)
@@ -15,7 +15,7 @@ export const saveMenu: (menu: readonly IMenuItem[]) => void = menu => {
 }
 
 export const loadMenu: () => readonly IMenuItem[] = () => {
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     return []
   }
   const serializedMenu = window.localStorage.getItem(MenuStorageKey)

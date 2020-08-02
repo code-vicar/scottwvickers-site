@@ -1,6 +1,6 @@
-import React from 'react'
-import { MenuContextType, useMenuState } from '../../contexts/menu'
-import { loadMenu, saveMenu } from '../../utils/menuStorage'
+import React from "react"
+import { MenuContextType, useMenuState } from "../../contexts/menu"
+import { loadMenu, saveMenu } from "../../utils/menuStorage"
 
 export const MenuProvider: React.FC = ({ children }) => {
   const menuItems = loadMenu()

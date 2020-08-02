@@ -1,17 +1,17 @@
-import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
-import * as FaIcons from 'react-icons/fa'
-import { Grid, Button } from '@material-ui/core'
-import { makeStyles, createStyles } from '@material-ui/core/styles'
-import { ISiteMetaData } from '../interfaces/ISiteQuery'
+import React from "react"
+import { useStaticQuery, graphql } from "gatsby"
+import * as FaIcons from "react-icons/fa"
+import { Grid, Button } from "@material-ui/core"
+import { makeStyles, createStyles } from "@material-ui/core/styles"
+import { ISiteMetaData } from "../interfaces/ISiteQuery"
 
 const useButtonStyle = makeStyles(() =>
   createStyles({
     root: {
-      minWidth: 'unset',
-      padding: '10px',
-      margin: '5px',
-      borderRadius: '0'
+      minWidth: "unset",
+      padding: "10px",
+      margin: "5px",
+      borderRadius: "0"
     }
   })
 )

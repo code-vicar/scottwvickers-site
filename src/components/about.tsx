@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react"
 
-import { Typography } from '@material-ui/core'
+import { Typography } from "@material-ui/core"
 
 interface IProps {
   id: string
@@ -11,7 +11,7 @@ export const About: React.FC<IProps> = ({ id }) => (
     <div id={id} className="offset-anchor" />
     <Typography
       style={{
-        fontWeight: 'bold'
+        fontWeight: "bold"
       }}
     >
       About

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { FaBars } from 'react-icons/fa'
-import { useTheme } from '@material-ui/core/styles'
-import { Menu, IconButton, useMediaQuery } from '@material-ui/core'
+import React, { useState, useEffect, useRef } from "react"
+import { FaBars } from "react-icons/fa"
+import { useTheme } from "@material-ui/core/styles"
+import { Menu, IconButton, useMediaQuery } from "@material-ui/core"
 
 export interface INavItem {
   title: string;
@@ -18,20 +18,20 @@ export const BaseNav: React.FC<Props> = ({ navItems, onRenderMenuItem, onRenderN
   const [popoverOpen, setPopoverOpen] = useState(false)
   const anchorRef = useRef<null | HTMLButtonElement>(null)
   const theme = useTheme()
-  const gtSmall = useMediaQuery(theme.breakpoints.up('sm'))
+  const gtSmall = useMediaQuery(theme.breakpoints.up("sm"))
 
   useEffect(() => {
     function outsideElementClick (e?: MouseEvent) {
       if (!e || !e.target || !(e.target as Element).closest) {
         return
       }
-      if (!(e.target as Element).closest('#mainNavPopover')) {
+      if (!(e.target as Element).closest("#mainNavPopover")) {
         setPopoverOpen(false)
       }
     }
-    document.addEventListener('click', outsideElementClick)
+    document.addEventListener("click", outsideElementClick)
     return () => {
-      document.removeEventListener('click', outsideElementClick)
+      document.removeEventListener("click", outsideElementClick)
     }
   }, [])
 
@@ -50,8 +50,8 @@ export const BaseNav: React.FC<Props> = ({ navItems, onRenderMenuItem, onRenderN
         ref={anchorRef}
         aria-label="Menu"
         style={{
-          padding: '20px',
-          margin: '-20px'
+          padding: "20px",
+          margin: "-20px"
         }}
         onClick={() => {
           setPopoverOpen(true)
@@ -59,7 +59,7 @@ export const BaseNav: React.FC<Props> = ({ navItems, onRenderMenuItem, onRenderN
       >
         <FaBars
           style={{
-            verticalAlign: 'middle'
+            verticalAlign: "middle"
           }}
         />
       </IconButton>

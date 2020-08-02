@@ -1,28 +1,28 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import { Author as Bio } from '../components/author'
-import { Layout } from '../components/layout'
-import { SEO } from '../components/seo'
-import { rhythm, scale } from '../utils/typography'
-import { BlogNav } from '../components/mainNav/blog-nav'
+import React from "react"
+import { Link, graphql } from "gatsby"
+import { Author as Bio } from "../components/author"
+import { Layout } from "../components/layout"
+import { SEO } from "../components/seo"
+import { rhythm, scale } from "../utils/typography"
+import { BlogNav } from "../components/mainNav/blog-nav"
 import {
   ISiteMetaData,
   IBlogPostContext,
   IMarkdownQueryFields,
   IMarkdownQueryFrontmatter,
   IGatsbyPageProps
-} from '../interfaces'
+} from "../interfaces"
 
 interface IPageQuery {
   site: {
-    siteMetadata: Pick<ISiteMetaData, 'title' | 'author'>;
+    siteMetadata: Pick<ISiteMetaData, "title" | "author">;
   }
   markdownRemark: {
     id: string;
     excerpt: string;
     html: string;
-    fields: Pick<IMarkdownQueryFields, 'slug'>
-    frontmatter: Pick<IMarkdownQueryFrontmatter, 'date' | 'description' | 'title'>;
+    fields: Pick<IMarkdownQueryFields, "slug">
+    frontmatter: Pick<IMarkdownQueryFrontmatter, "date" | "description" | "title">;
   };
 }
 
@@ -55,7 +55,7 @@ const BlogPostTemplate: React.FC<Props> = ({ data, pageContext, location }) => {
           <p
             style={{
               ...scale(-1 / 5),
-              display: 'block',
+              display: "block",
               marginBottom: rhythm(1)
             }}
           >
@@ -76,10 +76,10 @@ const BlogPostTemplate: React.FC<Props> = ({ data, pageContext, location }) => {
       <nav>
         <ul
           style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            listStyle: 'none',
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            listStyle: "none",
             padding: 0
           }}
         >

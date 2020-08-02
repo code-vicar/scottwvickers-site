@@ -1,5 +1,5 @@
-import React from 'react'
-import { IMenu } from '../../interfaces/IMenu'
+import React from "react"
+import { IMenu } from "../../interfaces/IMenu"
 
 export type IMenuContext = IMenu
 

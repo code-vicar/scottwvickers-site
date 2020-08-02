@@ -1,18 +1,18 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { Section } from '../components/section'
-import { Layout } from '../components/layout'
-import { About } from '../components/about'
-import { Contact } from '../components/contact'
-import { SEO } from '../components/seo'
-import { NotesPeek } from '../components/notes_peek'
-import { HomeNav } from '../components/mainNav/home-nav'
-import { ISiteMetaData, IGatsbyPageProps } from '../interfaces'
+import React from "react"
+import { graphql } from "gatsby"
+import { Section } from "../components/section"
+import { Layout } from "../components/layout"
+import { About } from "../components/about"
+import { Contact } from "../components/contact"
+import { SEO } from "../components/seo"
+import { NotesPeek } from "../components/notes_peek"
+import { HomeNav } from "../components/mainNav/home-nav"
+import { ISiteMetaData, IGatsbyPageProps } from "../interfaces"
 
 interface Props extends IGatsbyPageProps {
   data: {
     site: {
-      siteMetadata: Pick<ISiteMetaData, 'title'>
+      siteMetadata: Pick<ISiteMetaData, "title">
     }
   }
 }

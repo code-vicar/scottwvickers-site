@@ -1,13 +1,13 @@
-import React, { MouseEvent } from 'react'
-import { MenuItem, Link, Button } from '@material-ui/core'
-import { navigate } from 'gatsby'
-import { BaseNav, INavItem } from './base-nav'
-import { IMainNavComponent } from '../../interfaces'
+import React, { MouseEvent } from "react"
+import { MenuItem, Link, Button } from "@material-ui/core"
+import { navigate } from "gatsby"
+import { BaseNav, INavItem } from "./base-nav"
+import { IMainNavComponent } from "../../interfaces"
 
 const navItems: INavItem[] = [
   {
-    title: 'All Notes',
-    url: '/notes'
+    title: "All Notes",
+    url: "/notes"
   }
 ]
 
@@ -18,7 +18,7 @@ const renderMenuItem = ({ title, url }: INavItem, setPopoverOpen: React.Dispatch
     <Button
       component="a"
       style={{
-        width: '100%'
+        width: "100%"
       }}
       disableElevation={true}
       href={url}

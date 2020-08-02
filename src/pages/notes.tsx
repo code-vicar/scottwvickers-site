@@ -1,26 +1,26 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import { Typography } from '@material-ui/core'
-import { Layout } from '../components/layout'
-import { SEO } from '../components/seo'
-import { rhythm } from '../utils/typography'
+import React from "react"
+import { Link, graphql } from "gatsby"
+import { Typography } from "@material-ui/core"
+import { Layout } from "../components/layout"
+import { SEO } from "../components/seo"
+import { rhythm } from "../utils/typography"
 import {
   ISiteMetaData,
   IMarkdownQueryFields,
   IMarkdownQueryFrontmatter,
   IGatsbyPageProps
-} from '../interfaces'
+} from "../interfaces"
 
 interface IMarkdownNode {
   excerpt: string;
-  fields: Pick<IMarkdownQueryFields, 'slug'>;
-  frontmatter: Pick<IMarkdownQueryFrontmatter, 'date' | 'description' | 'title'>
+  fields: Pick<IMarkdownQueryFields, "slug">;
+  frontmatter: Pick<IMarkdownQueryFrontmatter, "date" | "description" | "title">
 }
 
 interface Props extends IGatsbyPageProps {
   data: {
     site: {
-      siteMetadata: Pick<ISiteMetaData, 'title'>
+      siteMetadata: Pick<ISiteMetaData, "title">
     },
     allMarkdownRemark: {
       edges: Array<{ node: IMarkdownNode; }>
@@ -49,7 +49,7 @@ const AllNotes: React.FC<Props> = ({ data, location }) => {
                   marginBottom: rhythm(1 / 4)
                 }}
               >
-                <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
+                <Link style={{ boxShadow: "none" }} to={node.fields.slug}>
                   {title}
                 </Link>
               </h3>

@@ -1,14 +1,14 @@
-import React from 'react'
-import { makeStyles, createStyles } from '@material-ui/core'
-import { MenuContextType } from '../../contexts/menu'
-import { MenuItem } from './MenuItem'
+import React from "react"
+import { makeStyles, createStyles } from "@material-ui/core"
+import { MenuContextType } from "../../contexts/menu"
+import { MenuItem } from "./MenuItem"
 
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      margin: '20px 0 0 0',
-      maxHeight: '400px',
-      overflow: 'auto'
+      margin: "20px 0 0 0",
+      maxHeight: "400px",
+      overflow: "auto"
     }
   })
 )
@@ -25,7 +25,7 @@ export const MenuItems: React.FC<IMenuItemsProps> = ({ className }) => {
     if (className) {
       classNames.push(className)
     }
-    return classNames.join(' ')
+    return classNames.join(" ")
   }, [styles.root, className])
   return (
     <dl className={combinedClassName}>

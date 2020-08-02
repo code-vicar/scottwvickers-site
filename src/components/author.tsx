@@ -5,11 +5,11 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
-import Image from 'gatsby-image'
-import { Typography } from '@material-ui/core'
-import { rhythm } from '../utils/typography'
+import React from "react"
+import { useStaticQuery, graphql } from "gatsby"
+import Image from "gatsby-image"
+import { Typography } from "@material-ui/core"
+import { rhythm } from "../utils/typography"
 
 export const Author: React.FC = () => {
   const data = useStaticQuery(graphql`
@@ -32,9 +32,9 @@ export const Author: React.FC = () => {
   return (
     <div
       style={{
-        display: 'flex',
+        display: "flex",
         marginBottom: rhythm(2.5),
-        alignItems: 'center'
+        alignItems: "center"
       }}
     >
       <Image
@@ -44,15 +44,15 @@ export const Author: React.FC = () => {
           marginRight: rhythm(1 / 2),
           marginBottom: 0,
           minWidth: 50,
-          borderRadius: '100%'
+          borderRadius: "100%"
         }}
         imgStyle={{
-          borderRadius: '50%'
+          borderRadius: "50%"
         }}
       />
       <Typography
         style={{
-          fontWeight: 'bold'
+          fontWeight: "bold"
         }}
       >
         {author}

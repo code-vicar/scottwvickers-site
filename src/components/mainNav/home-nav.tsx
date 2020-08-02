@@ -1,21 +1,21 @@
-import React from 'react'
-import { MenuItem, Button, Link, LinkClassKey } from '@material-ui/core'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseNav, INavItem } from './base-nav'
-import { IMainNavComponent, Select } from '../../interfaces'
+import React from "react"
+import { MenuItem, Button, Link, LinkClassKey } from "@material-ui/core"
+import { makeStyles, Theme } from "@material-ui/core/styles"
+import { BaseNav, INavItem } from "./base-nav"
+import { IMainNavComponent, Select } from "../../interfaces"
 
 const navItems: INavItem[] = [
   {
-    title: 'About',
-    url: '#about'
+    title: "About",
+    url: "#about"
   },
   {
-    title: 'Notes',
-    url: '#notes'
+    title: "Notes",
+    url: "#notes"
   },
   {
-    title: 'Contact',
-    url: '#contact'
+    title: "Contact",
+    url: "#contact"
   }
 ]
 
@@ -24,7 +24,7 @@ const smoothScroll = (anchor: string) => {
   const scrollAnchor = document.querySelector(anchor)
   if (scrollAnchor) {
     scrollAnchor.scrollIntoView({
-      behavior: 'smooth'
+      behavior: "smooth"
     })
   }
 }
@@ -37,7 +37,7 @@ const renderMenuItem = (
     <Button
       component="a"
       style={{
-        width: '100%'
+        width: "100%"
       }}
       disableElevation={true}
       href={url}
@@ -63,10 +63,10 @@ const HomeLink: React.FC<{ title: string; href: string }> = ({
   const useStyles = makeStyles<
     Theme,
     Record<string, unknown>,
-    Select<LinkClassKey, 'root'>
+    Select<LinkClassKey, "root">
   >(() => ({
     root: {
-      margin: '10px'
+      margin: "10px"
     }
   }))
   return (

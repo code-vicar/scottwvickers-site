@@ -1,8 +1,8 @@
-import React, { useRef, useEffect } from 'react'
-import { makeStyles, createStyles } from '@material-ui/core/styles'
-import { NavBrand } from './nav-brand'
-import { WindowLocation, IMainNavComponent } from '../interfaces'
-import { layout, navbar } from '../styles/constants'
+import React, { useRef, useEffect } from "react"
+import { makeStyles, createStyles } from "@material-ui/core/styles"
+import { NavBrand } from "./nav-brand"
+import { WindowLocation, IMainNavComponent } from "../interfaces"
+import { layout, navbar } from "../styles/constants"
 
 interface Props {
   className?: string;
@@ -13,47 +13,47 @@ interface Props {
 
 const useStyles = makeStyles(theme => createStyles({
   root: {
-    minHeight: '60px',
+    minHeight: "60px",
     background: theme.palette.background.default,
     margin: `0 -${layout.contentSideMargin}`,
-    padding: '0 20px',
+    padding: "0 20px",
     borderBottom: `1px solid ${navbar.bottomBorderColor}`,
-    textTransform: 'uppercase',
-    '& a': {
-      boxShadow: 'none',
-      color: 'inherit'
+    textTransform: "uppercase",
+    "& a": {
+      boxShadow: "none",
+      color: "inherit"
     },
-    [theme.breakpoints.up('sm')]: {
-      borderBottom: 'none',
-      letterSpacing: '1px',
-      '-webkit-transition': 'background .5s ease-in-out, min-height .5s ease-in-out',
-      '-moz-transition': 'background .5s ease-in-out, min-height .5s ease-in-out',
-      transition: 'background .5s ease-in-out, min-height .5s ease-in-out'
+    [theme.breakpoints.up("sm")]: {
+      borderBottom: "none",
+      letterSpacing: "1px",
+      "-webkit-transition": "background .5s ease-in-out, min-height .5s ease-in-out",
+      "-moz-transition": "background .5s ease-in-out, min-height .5s ease-in-out",
+      transition: "background .5s ease-in-out, min-height .5s ease-in-out"
     }
   },
   navContainer: {
-    width: '100%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    maxWidth: '100%',
-    [theme.breakpoints.up('sm')]: {
+    width: "100%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    maxWidth: "100%",
+    [theme.breakpoints.up("sm")]: {
       maxWidth: `${theme.breakpoints.values.sm}px`
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up("md")]: {
       maxWidth: `${theme.breakpoints.values.md}px`
     }
   },
   collapsed: {
-    [theme.breakpoints.up('sm')]: {
-      minHeight: '50px',
-      background: theme.palette.type === 'dark' ? navbar.colorCollapsedDark : navbar.colorCollapsed,
+    [theme.breakpoints.up("sm")]: {
+      minHeight: "50px",
+      background: theme.palette.type === "dark" ? navbar.colorCollapsedDark : navbar.colorCollapsed,
       borderBottom: `1px solid ${navbar.bottomBorderColor}`
     }
   },
   fixedTop: {
-    borderWidth: '0 0 1px',
-    position: 'fixed',
-    display: 'flex',
+    borderWidth: "0 0 1px",
+    position: "fixed",
+    display: "flex",
     left: 0,
     right: 0,
     top: 0,
@@ -86,9 +86,9 @@ export const Header: React.FC<Props> = ({ className, title, location, MainNav })
 
   useEffect(() => {
     toggleNavCollapse()
-    document.addEventListener('scroll', onWindowScroll)
+    document.addEventListener("scroll", onWindowScroll)
     return () => {
-      document.removeEventListener('scroll', onWindowScroll)
+      document.removeEventListener("scroll", onWindowScroll)
     }
   }, [])
 
@@ -100,12 +100,12 @@ export const Header: React.FC<Props> = ({ className, title, location, MainNav })
   const isRootPath = location.pathname === rootPath
   return (
     <nav
-      className={[styles.root, styles.fixedTop].join(' ')}
+      className={[styles.root, styles.fixedTop].join(" ")}
       ref={navbarRef}
       role="navigation"
     >
       <section
-        className={classes.join(' ')}
+        className={classes.join(" ")}
       >
         <NavBrand
           title={title}
