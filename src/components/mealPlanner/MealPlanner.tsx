@@ -1,7 +1,7 @@
 import React from "react"
 import { createStyles, Typography, makeStyles } from "@material-ui/core"
+import { AuthProvider, AuthButton } from "../auth"
 import { AddMenuItem, MenuProvider, MenuItems } from "../menu"
-import { AuthButton } from "./AuthButton"
 
 enum GridAreas {
   menu = "menu",
@@ -41,32 +41,34 @@ const useStyles = makeStyles(() =>
 export const MealPlanner: React.FC = () => {
   const styles = useStyles()
   return (
-    <MenuProvider>
-      <section className={styles.root}>
-        <div className={styles.header}>
-          <div
-            style={{
-              display: "flex"
-            }}
-          >
-            <div style={{
-              flex: "1 1 auto"
-            }}>
-              <Typography component="h2">Menu Items</Typography>
-            </div>
-            <div style={{
-              flex: "1 1 auto",
-              alignSelf: "end"
-            }}>
-              <AuthButton />
+    <AuthProvider>
+      <MenuProvider>
+        <section className={styles.root}>
+          <div className={styles.header}>
+            <div
+              style={{
+                display: "flex"
+              }}
+            >
+              <div style={{
+                flex: "1 1 auto"
+              }}>
+                <Typography component="h2">Menu Items</Typography>
+              </div>
+              <div style={{
+                flex: "1 1 auto",
+                alignSelf: "end"
+              }}>
+                <AuthButton />
+              </div>
             </div>
           </div>
-        </div>
-        <div className={styles.menu}>
-          <MenuItems />
-          <AddMenuItem />
-        </div>
-      </section>
-    </MenuProvider>
+          <div className={styles.menu}>
+            <MenuItems />
+            <AddMenuItem />
+          </div>
+        </section>
+      </MenuProvider>
+    </AuthProvider>
   )
 }

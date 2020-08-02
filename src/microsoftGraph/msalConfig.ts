@@ -1,18 +1,20 @@
-import { AccountInfo, LogLevel } from "@azure/msal-browser"
+import { AccountInfo, LogLevel, Configuration } from "@azure/msal-browser"
 import { BaseAuthRequest, SilentFlowRequest } from "@azure/msal-common"
+
+import { isIE } from "../utils/isIE"
 
 // Config object to be passed to Msal on creation.
 // For a full list of msal.js configuration parameters,
 // visit https://azuread.github.io/microsoft-authentication-library-for-js/docs/msal/modules/_authenticationparameters_.html
-export const msalConfig = {
+export const msalConfig: Configuration = {
   auth: {
     clientId: "c128ff80-10ac-4985-9b0f-f807473ce4eb",
     authority: "https://login.microsoftonline.com/common",
     redirectUri: `${process.env.MSAL_REDIRECT_URI}`
   },
   cache: {
-    cacheLocation: "sessionStorage", // This configures where your cache will be stored
-    storeAuthStateInCookie: false // Set this to "true" if you are having issues on IE11 or Edge
+    cacheLocation: "localStorage",
+    storeAuthStateInCookie: isIE()
   },
   system: {
     loggerOptions: {

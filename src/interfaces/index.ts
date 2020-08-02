@@ -1,3 +1,4 @@
+export * from "./IAuth"
 export * from "./IGatsbyPageProps"
 export * from "./ISiteQuery"
 export * from "./IMainNavComponent"

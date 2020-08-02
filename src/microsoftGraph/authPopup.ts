@@ -1,7 +1,6 @@
 // Create the main myMSALObj instance
 // configuration parameters are located at authConfig.js
 import {
-  AccountInfo,
   AuthenticationResult,
   PublicClientApplication,
   InteractionRequiredAuthError
@@ -12,18 +11,15 @@ import { msalConfig, loginRequest, CustomTokenRequest } from "./msalConfig"
 
 const myMSALObj = new PublicClientApplication(msalConfig)
 
-let username = ""
-
 export async function signIn(): Promise<AuthenticationResult> {
   const response = await myMSALObj.loginPopup(loginRequest)
   if (!response) {
     throw new Error("did not login")
   }
-  username = response.account.username
   return response
 }
 
-export async function signOut(): Promise<void> {
+export async function signOut(username: string): Promise<void> {
   const logoutRequest = {
     account: myMSALObj.getAccountByUsername(username)
   }
@@ -31,15 +27,8 @@ export async function signOut(): Promise<void> {
   return myMSALObj.logout(logoutRequest)
 }
 
-export const isSignedIn: () => AccountInfo | undefined = () => {
-  const info = myMSALObj.getAccountByUsername(username)
-  if (!info) {
-    return undefined
-  }
-  return info
-}
-
 export async function getTokenPopup(
+  username: string,
   request: CustomTokenRequest
 ): Promise<AuthenticationResult> {
   /**
