@@ -16,7 +16,7 @@ const useSignedInStyles = makeStyles(() =>
 )
 
 const Loading: React.FC = () => {
-  return <span>Signing in</span>
+  return <span>Updating auth status...</span>
 }
 
 const SignedIn: React.FC<{
@@ -42,12 +42,13 @@ const SignIn: React.FC<{ onSignInClick: () => Promise<void> }> = ({ onSignInClic
 
 export const AuthButton: React.FC = () => {
   const authContext = React.useContext(AuthContextType)
-
+  const username = authContext.accountInfo ? authContext.accountInfo.username : undefined;
+  console.log("Rendering authButton, %o", authContext.authState)
   if (authContext.authState.status === AuthStatus.Loading) {
     return <Loading />
   }
-  if (authContext.authState.status === AuthStatus.Failure || !authContext.username) {
+  if (authContext.authState.status === AuthStatus.Failure || !username) {
     return <SignIn onSignInClick={authContext.signIn} />
   }
-  return <SignedIn username={authContext.username} onSignOutClick={authContext.signOut} />
+  return <SignedIn username={username} onSignOutClick={authContext.signOut} />
 }

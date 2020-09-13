@@ -1,6 +1,5 @@
 import React from "react"
 import { createStyles, makeStyles } from "@material-ui/core"
-import { AuthProvider } from "../auth"
 import { AddMenuItem, MenuHeader, MenuProvider, MenuItems } from "../menu"
 
 enum GridAreas {
@@ -41,18 +40,16 @@ const useStyles = makeStyles(() =>
 export const MealPlanner: React.FC = () => {
   const styles = useStyles()
   return (
-    <AuthProvider>
-      <MenuProvider>
-        <section className={styles.root}>
-          <div className={styles.header}>
-            <MenuHeader />
-          </div>
-          <div className={styles.menu}>
-            <MenuItems />
-            <AddMenuItem />
-          </div>
-        </section>
-      </MenuProvider>
-    </AuthProvider>
+    <MenuProvider>
+      <section className={styles.root}>
+        <div className={styles.header}>
+          <MenuHeader />
+        </div>
+        <div className={styles.menu}>
+          <MenuItems />
+          <AddMenuItem />
+        </div>
+      </section>
+    </MenuProvider>
   )
 }

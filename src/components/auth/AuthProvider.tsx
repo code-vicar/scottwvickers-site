@@ -6,8 +6,15 @@ export const AuthProvider: React.FC = ({ children }) => {
   const username = loadUsername()
   const authState = useAuthState(username)
   React.useEffect(() => {
-    saveUsername(authState.username)
-  }, [authState.username])
+    saveUsername(authState.accountInfo ? authState.accountInfo.username : undefined)
+  }, [authState.accountInfo])
+
+  React.useEffect(() => {
+    const checkLoginResult = async () => {
+      await authState.handleRedirectPromise()
+    }
+    checkLoginResult()
+  }, [])
   return (
     <AuthContextType.Provider value={authState}>
       {children}

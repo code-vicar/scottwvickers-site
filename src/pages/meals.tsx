@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { Typography } from "@material-ui/core"
+import { AuthProvider } from "../components/auth/AuthProvider"
 import { Layout } from "../components/layout"
 import { SEO } from "../components/seo"
 import { MealPlanner } from "../components/mealPlanner"
@@ -18,11 +19,13 @@ interface Props extends IGatsbyPageProps {
 const Meals: React.FC<Props> = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   return (
-    <Layout location={location} title={siteTitle}>
-      <SEO title="Meal planner" />
-      <Typography component="h2">Meal planner</Typography>
-      <MealPlanner />
-    </Layout>
+    <AuthProvider>
+      <Layout location={location} title={siteTitle}>
+        <SEO title="Meal planner" />
+        <Typography component="h2">Meal planner</Typography>
+        <MealPlanner />
+      </Layout>
+    </AuthProvider>
   )
 }
 

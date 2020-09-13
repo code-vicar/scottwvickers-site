@@ -1,14 +1,18 @@
 import React from "react"
-import { AuthenticationResult } from "@azure/msal-browser"
+import { AccountInfo, AuthenticationResult } from "@azure/msal-browser"
 import { IAuth, AuthState, AuthStatus } from "../../interfaces/IAuth"
 import { isSSR } from "../../utils"
 
 let msal: {
+  getAccountByUsername: (username: string) => AccountInfo | null
+  handleRedirectPromise: () => Promise<AuthenticationResult | null>
   signIn: () => Promise<AuthenticationResult>
-  signOut: (username: string) => Promise<void>
+  signOut: (account: AccountInfo) => Promise<void>
 }
 if (isSSR()) {
   msal = {
+    getAccountByUsername: () => null,
+    handleRedirectPromise: () => Promise.resolve(null),
     signIn: () => Promise.resolve(({} as unknown) as AuthenticationResult),
     signOut: () => Promise.resolve()
   }
@@ -16,36 +20,73 @@ if (isSSR()) {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const actualMsal = require("../../microsoftGraph")
   msal = {
+    getAccountByUsername: actualMsal.getAccountByUsername,
+    handleRedirectPromise: actualMsal.handleRedirectPromise,
     signIn: actualMsal.signIn,
     signOut: actualMsal.signOut
   }
 }
 
 export const useAuthState: (initialUsername?: string) => IAuth = (initialUsername) => {
+  const initAccountInfo = initialUsername ? msal.getAccountByUsername(initialUsername) || undefined : undefined
+
   const [authState, setAuthState] = React.useState<AuthState>({
     status: AuthStatus.Ready,
-    username: initialUsername
+    accountInfo: initAccountInfo
   })
 
-  const username = React.useMemo(() => {
+  const accountInfo = React.useMemo(() => {
     if (authState.status === AuthStatus.Ready) {
-      return authState.username
+      return authState.accountInfo
     }
     return undefined
   }, [authState.status])
 
-  const signInCB = React.useCallback(async () => {
+  const handleRedirectPromiseCB = React.useCallback(async () => {
+    console.log("handleRedirectPromise - AuthStatus Loading")
     setAuthState({
       status: AuthStatus.Loading
     })
     try {
-      const newSignIn = await msal.signIn()
+      const signedIn = await msal.handleRedirectPromise()
+      if (signedIn) {
+        console.log("handleRedirectPromise - AuthStatus Ready: signed in")
+        setAuthState({
+          status: AuthStatus.Ready,
+          accountInfo: signedIn.account
+        })
+      } else {
+        console.log("handleRedirectPromise - AuthStatus Ready: no-op")
+        setAuthState({
+          status: AuthStatus.Ready,
+          accountInfo
+        })
+      }
+    } catch (e) {
+      console.log(e)
+      console.log("handleRedirectPromise - AuthStatus Failure")
+      setAuthState({
+        status: AuthStatus.Failure,
+        error: e
+      })
+    }
+  }, [accountInfo, msal.handleRedirectPromise])
+
+  const signInCB = React.useCallback(async () => {
+    console.log("signIn - AuthStatus Loading")
+    setAuthState({
+      status: AuthStatus.Loading
+    })
+    try {
+      const signedIn = await msal.signIn()
+      console.log("signIn - AuthStatus Ready: signed in")
       setAuthState({
         status: AuthStatus.Ready,
-        username: newSignIn.account.username
+        accountInfo: signedIn.account
       })
     } catch (e) {
       console.log(e)
+      console.log("signIn - AuthStatus Failure")
       setAuthState({
         status: AuthStatus.Failure,
         error: e
@@ -54,17 +95,17 @@ export const useAuthState: (initialUsername?: string) => IAuth = (initialUsernam
   }, [msal.signIn])
 
   const signOutCB = React.useCallback(async () => {
-    if (!username) {
+    if (!accountInfo) {
       return
     }
     setAuthState({
       status: AuthStatus.Loading
     })
     try {
-      await msal.signOut(username)
+      await msal.signOut(accountInfo)
       setAuthState({
         status: AuthStatus.Ready,
-        username: undefined
+        accountInfo: undefined
       })
     } catch (e) {
       console.log(e)
@@ -73,12 +114,16 @@ export const useAuthState: (initialUsername?: string) => IAuth = (initialUsernam
         error: e
       })
     }
-  }, [msal.signOut, username])
+  }, [accountInfo, msal.signOut])
 
-  return React.useMemo(() => ({
-    authState,
-    username,
-    signIn: signInCB,
-    signOut: signOutCB
-  }), [signInCB, signOutCB])
+  return React.useMemo(() => {
+    console.log("recalculating AuthState memo, %o", authState)
+    return {
+      authState,
+      accountInfo,
+      handleRedirectPromise: handleRedirectPromiseCB,
+      signIn: signInCB,
+      signOut: signOutCB
+    }
+  }, [authState, accountInfo, handleRedirectPromiseCB, signInCB, signOutCB])
 }

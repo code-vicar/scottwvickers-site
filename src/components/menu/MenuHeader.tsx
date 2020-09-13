@@ -11,7 +11,8 @@ const useStyles = makeStyles(() =>
       flex: "1 1 auto"
     },
     right: {
-      flex: "0 1 max-content"
+      flex: "1 1 auto",
+      maxWidth: "max-content"
     }
   })
 )

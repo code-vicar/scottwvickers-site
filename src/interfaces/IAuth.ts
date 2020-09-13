@@ -1,3 +1,5 @@
+import { AccountInfo } from "@azure/msal-browser"
+
 export enum AuthStatus {
   Loading,
   Ready,
@@ -10,7 +12,7 @@ interface ILoading {
 
 interface IReady {
   status: AuthStatus.Ready;
-  username: string | undefined;
+  accountInfo?: AccountInfo;
 }
 
 interface IFailure {
@@ -22,7 +24,8 @@ export type AuthState = ILoading | IReady | IFailure;
 
 export interface IAuth {
   authState: AuthState;
-  username: string | undefined;
+  accountInfo?: AccountInfo;
+  handleRedirectPromise: () => Promise<void>;
   signIn: () => Promise<void>;
   signOut: () => Promise<void>;
 }
