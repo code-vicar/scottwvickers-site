@@ -7,7 +7,8 @@ export const defaultMenuState: IMenu = {
   items: [],
   addItem: () => undefined,
   removeItem: () => undefined,
-  updateItem: () => undefined
+  updateItem: () => undefined,
+  setMenuItems: () => undefined
 }
 
 export const MenuContextType = React.createContext<IMenuContext>(

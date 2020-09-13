@@ -42,12 +42,12 @@ const SignIn: React.FC<{ onSignInClick: () => Promise<void> }> = ({ onSignInClic
 
 export const AuthButton: React.FC = () => {
   const authContext = React.useContext(AuthContextType)
-  const username = authContext.accountInfo ? authContext.accountInfo.username : undefined;
+  const username = authContext.username ? authContext.username : undefined
   console.log("Rendering authButton, %o", authContext.authState)
   if (authContext.authState.status === AuthStatus.Loading) {
     return <Loading />
   }
-  if (authContext.authState.status === AuthStatus.Failure || !username) {
+  if (!username) {
     return <SignIn onSignInClick={authContext.signIn} />
   }
   return <SignedIn username={username} onSignOutClick={authContext.signOut} />

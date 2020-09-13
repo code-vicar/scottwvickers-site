@@ -12,4 +12,5 @@ export interface IMenu {
     updater: (item: IMenuItem | undefined) => IMenuItem | undefined
   ): void
   removeItem(item: IMenuItem): void
+  setMenuItems(items: IMenuItem[]): void
 }

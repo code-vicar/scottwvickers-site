@@ -66,8 +66,9 @@ export const useMenuState: (items: readonly IMenuItem[]) => IMenu = items => {
       items: menuItems,
       updateItem,
       addItem,
-      removeItem
+      removeItem,
+      setMenuItems
     }),
-    [menuItems, updateItem, addItem, removeItem]
+    [menuItems, updateItem, addItem, removeItem, setMenuItems]
   )
 }

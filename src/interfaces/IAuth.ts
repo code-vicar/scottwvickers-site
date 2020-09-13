@@ -12,7 +12,7 @@ interface ILoading {
 
 interface IReady {
   status: AuthStatus.Ready;
-  accountInfo?: AccountInfo;
+  username?: string;
 }
 
 interface IFailure {
@@ -22,10 +22,15 @@ interface IFailure {
 
 export type AuthState = ILoading | IReady | IFailure;
 
+export interface IAuthTokenOptions {
+  scopes?: string[]
+}
+
 export interface IAuth {
   authState: AuthState;
-  accountInfo?: AccountInfo;
-  handleRedirectPromise: () => Promise<void>;
+  username?: string;
+  getAccount: () => AccountInfo | undefined;
+  getToken: (options?: IAuthTokenOptions) => Promise<string>;
   signIn: () => Promise<void>;
   signOut: () => Promise<void>;
 }

@@ -1,27 +1,30 @@
-// Create the main myMSALObj instance
-// configuration parameters are located at authConfig.js
 import {
   AccountInfo,
   AuthenticationResult,
   PublicClientApplication,
   InteractionRequiredAuthError
 } from "@azure/msal-browser"
-import { SilentFlowRequest } from "@azure/msal-common"
 
-import { msalConfig, loginRequest, CustomTokenRequest } from "./msalConfig"
+import { msalConfig, signInScopes } from "./msalConfig"
 
-const myMSALObj = new PublicClientApplication(msalConfig)
+const msal = new PublicClientApplication(msalConfig)
 
 export async function handleRedirectPromise(): Promise<AuthenticationResult | null> {
-  return myMSALObj.handleRedirectPromise()
+  return msal.handleRedirectPromise().then((result) => {
+    console.log("handle redirect resolved", result)
+    return result
+  }).catch(err => {
+    console.log("Err in handleRedirectPromise", err)
+    throw err
+  })
 }
 
 export function getAccountByUsername(username: string): AccountInfo | null {
-  return myMSALObj.getAccountByUsername(username)
+  return msal.getAccountByUsername(username)
 }
 
 export async function signIn(): Promise<AuthenticationResult> {
-  const response = await myMSALObj.loginPopup(loginRequest)
+  const response = await msal.loginPopup({ scopes: signInScopes })
   if (!response) {
     throw new Error("did not login")
   }
@@ -32,30 +35,29 @@ export async function signOut(account: AccountInfo): Promise<void> {
   const logoutRequest = {
     account
   }
-
   console.log("Signout request", logoutRequest)
-  return myMSALObj.logout(logoutRequest)
+  return msal.logout(logoutRequest)
 }
 
-export async function getTokenPopup(
+export async function getTokenSilent(
   username: string,
-  request: CustomTokenRequest
+  scopes: string[]
 ): Promise<AuthenticationResult> {
   /**
    * See here for more info on account retrieval:
    * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-common/docs/Accounts.md
    */
-  const account = myMSALObj.getAccountByUsername(username)
+  const account = msal.getAccountByUsername(username)
   if (!account) {
     throw new Error("not logged in")
   }
-  const req: SilentFlowRequest = {
-    ...request,
-    account
-  }
   let silentFetchError: Error | undefined
   try {
-    return await myMSALObj.acquireTokenSilent(req)
+    return await msal.acquireTokenSilent({
+      scopes,
+      account,
+      forceRefresh: false
+    })
   } catch (error) {
     console.warn(
       "silent token acquisition fails. acquiring token using redirect"
@@ -65,7 +67,8 @@ export async function getTokenPopup(
   if (!(silentFetchError instanceof InteractionRequiredAuthError)) {
     throw silentFetchError
   }
-
   // fallback to interaction when silent call fails
-  return await myMSALObj.acquireTokenPopup(request)
+  return await msal.acquireTokenPopup({
+    scopes
+  })
 }
