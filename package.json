@@ -7,7 +7,7 @@
   "dependencies": {
     "@azure/msal-browser": "^2.0.0",
     "@material-ui/core": "^4.8.3",
-    "gatsby": "^2.24.23",
+    "gatsby": "^2.24.57",
     "gatsby-image": "^2.2.37",
     "gatsby-plugin-excerpts": "^1.1.0",
     "gatsby-plugin-google-analytics": "^2.1.31",
@@ -15,7 +15,7 @@
     "gatsby-plugin-material-ui": "^2.1.6",
     "gatsby-plugin-react-helmet": "^3.1.18",
     "gatsby-plugin-sass": "^2.1.26",
-    "gatsby-plugin-sharp": "^2.3.10",
+    "gatsby-plugin-sharp": "^2.6.35",
     "gatsby-plugin-typescript": "^2.1.23",
     "gatsby-plugin-typography": "^2.3.20",
     "gatsby-remark-copy-linked-files": "^2.1.33",
