@@ -33,13 +33,9 @@ module.exports = {
   siteMetadata: {
     title: "Vickers",
     author: "Scott Vickers",
-    description: "Scott Vickers Blog",
+    description: "Scott Vickers Website",
     siteUrl: "https://scottwvickers.com",
     social: [
-      {
-        title: "Keybase",
-        url: "https://keybase.io/svickers"
-      },
       {
         title: "Github",
         url: "https://github.com/code-vicar"
@@ -47,10 +43,6 @@ module.exports = {
       {
         title: "StackOverflow",
         url: "http://stackoverflow.com/users/4599499/scott-vickers?tab=profile"
-      },
-      {
-        title: "Twitter",
-        url: "https://twitter.com/ScottWVickers"
       },
       {
         title: "Linkedin",
@@ -138,7 +130,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "Scott Vickers Blog",
+        name: "Scott Vickers Website",
         short_name: "Vickers",
         start_url: "/",
         background_color: "#ffffff",

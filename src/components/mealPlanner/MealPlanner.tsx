@@ -1,5 +1,5 @@
 import React from "react"
-import { createStyles, makeStyles } from "@material-ui/core"
+import { createStyles, makeStyles } from "@mui/styles"
 import { AddMenuItem, MenuHeader, MenuProvider, MenuItems } from "../menu"
 
 enum GridAreas {

@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
-import { Typography } from "@material-ui/core"
+import Typography from "@mui/material/Typography"
 
 interface Props {
   id: string

@@ -1,11 +1,11 @@
 import React from "react"
+import Button from "@mui/material/Button"
+import Grid from "@mui/material/Grid"
+import TextField from "@mui/material/TextField"
 import {
-  Button,
   createStyles,
-  Grid,
-  TextField,
   makeStyles
-} from "@material-ui/core"
+} from "@mui/styles"
 import { MenuContextType } from "../../contexts/menu"
 
 const useStyles = makeStyles(() =>
@@ -144,7 +144,7 @@ export const AddMenuItem: React.FC<IAddMenuItemProps> = ({ className }) => {
         id="menu-item-Description"
         label="Description"
         multiline
-        rowsMax={3}
+        maxRows={3}
         error={descriptionField.error}
         value={descriptionField.value}
         helperText={descriptionField.helperText}

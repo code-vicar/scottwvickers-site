@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import { makeStyles, createStyles } from "@material-ui/core/styles"
+import { makeStyles, createStyles } from "@mui/styles"
 
 interface Props {
   title: string;

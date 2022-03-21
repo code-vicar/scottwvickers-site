@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react"
-import { makeStyles, createStyles } from "@material-ui/core/styles"
+import { makeStyles, createStyles } from "@mui/styles"
+import { Theme } from "@mui/material/styles"
 import { NavBrand } from "./nav-brand"
 import { WindowLocation, IMainNavComponent } from "../interfaces"
 import { layout, navbar } from "../styles/constants"
@@ -11,7 +12,7 @@ interface Props {
   MainNav?: IMainNavComponent;
 }
 
-const useStyles = makeStyles(theme => createStyles({
+const useStyles = makeStyles<Theme>(theme => createStyles({
   root: {
     minHeight: "60px",
     background: theme.palette.background.default,
@@ -46,7 +47,7 @@ const useStyles = makeStyles(theme => createStyles({
   collapsed: {
     [theme.breakpoints.up("sm")]: {
       minHeight: "50px",
-      background: theme.palette.type === "dark" ? navbar.colorCollapsedDark : navbar.colorCollapsed,
+      background: theme.custom.themeType === "dark" ? navbar.colorCollapsedDark : navbar.colorCollapsed,
       borderBottom: `1px solid ${navbar.bottomBorderColor}`
     }
   },

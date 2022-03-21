@@ -1,5 +1,7 @@
 import React, { MouseEvent } from "react"
-import { MenuItem, Link, Button } from "@material-ui/core"
+import Button from "@mui/material/Button"
+import MenuItem from "@mui/material/MenuItem"
+import Link from "@mui/material/Link"
 import { navigate } from "gatsby"
 import { BaseNav, INavItem } from "./base-nav"
 import { IMainNavComponent } from "../../interfaces"
@@ -17,7 +19,7 @@ const renderMenuItem = ({ title, url }: INavItem, setPopoverOpen: React.Dispatch
   >
     <Button
       component="a"
-      style={{
+      sx={{
         width: "100%"
       }}
       disableElevation={true}

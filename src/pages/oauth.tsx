@@ -1,14 +1,13 @@
 import React from "react"
 import { navigate } from "gatsby"
-// import { useAuthState } from "../contexts/auth/useAuthState"
 import { isSSR } from "../utils"
+import { msal } from "../serviceClients/msal"
+
 const AuthLanding: React.FC = () => {
   if (isSSR()) {
     return null
   }
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { handleRedirectPromise } = require("../serviceClients/msal")
-  handleRedirectPromise().catch((err: unknown) => {
+  msal.handleRedirectPromise().catch((err) => {
     console.log(err)
   }).then(() => {
     if (window !== window.parent && !window.opener) {

@@ -1,16 +1,11 @@
 import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
+import Box from "@mui/material/Box"
 
-const useStyles = makeStyles({
-  root: {
+export const Section: React.FC = ({ children }) => {
+  return <Box sx={{
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center"
-  }
-})
-
-export const Section: React.FC = ({ children }) => {
-  const classes = useStyles()
-  return <div className={classes.root}>{children}</div>
+  }}>{children}</Box>
 }

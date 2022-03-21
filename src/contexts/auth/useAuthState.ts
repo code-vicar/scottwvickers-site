@@ -1,35 +1,6 @@
 import React from "react"
-import { AccountInfo, AuthenticationResult } from "@azure/msal-browser"
 import { IAuth, IAuthTokenOptions, AuthState, AuthStatus } from "../../interfaces/IAuth"
-import { isSSR } from "../../utils"
-
-let msal: {
-  getAccountByUsername: (username: string) => AccountInfo | null
-  getTokenSilent: (username: string, scopes: string[]) => Promise<AuthenticationResult>
-  signIn: () => Promise<AuthenticationResult>
-  signOut: (account: AccountInfo) => Promise<void>
-}
-if (isSSR()) {
-  msal = {
-    getAccountByUsername: () => null,
-    getTokenSilent: () => Promise.resolve(({} as unknown) as AuthenticationResult),
-    signIn: () => Promise.resolve(({} as unknown) as AuthenticationResult),
-    signOut: () => Promise.resolve()
-  }
-} else {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const actualMsal = require("../../serviceClients/msal")
-  msal = {
-    getAccountByUsername: actualMsal.getAccountByUsername,
-    getTokenSilent: actualMsal.getTokenSilent,
-    signIn: actualMsal.signIn,
-    signOut: actualMsal.signOut
-  }
-}
-
-function getAccountByUsername(username: string): AccountInfo | undefined {
-  return msal.getAccountByUsername(username) || undefined
-}
+import { msal } from "../../serviceClients/msal"
 
 export const useAuthState: (initialUsername?: string) => IAuth = (initialUsername) => {
   const [authState, setAuthState] = React.useState<AuthState>({
@@ -41,9 +12,9 @@ export const useAuthState: (initialUsername?: string) => IAuth = (initialUsernam
     if (authState.status !== AuthStatus.Ready) {
       return undefined
     }
-    const account = authState.username ? getAccountByUsername(authState.username) : undefined
+    const account = authState.username ? msal.getAccountByUsername(authState.username) : null
     return account ? account.username : undefined
-  }, [authState.status])
+  }, [authState])
 
   const signInCB = React.useCallback(async () => {
     console.log("signIn - AuthStatus Loading")
@@ -71,7 +42,7 @@ export const useAuthState: (initialUsername?: string) => IAuth = (initialUsernam
     if (!username) {
       return
     }
-    const account = getAccountByUsername(username)
+    const account = msal.getAccountByUsername(username)
     if (!account) {
       return
     }
@@ -94,7 +65,7 @@ export const useAuthState: (initialUsername?: string) => IAuth = (initialUsernam
   }, [username, msal.signOut])
 
   const getAccount = React.useCallback(() => {
-    return username ? getAccountByUsername(username) : undefined
+    return username ? msal.getAccountByUsername(username) : undefined
   }, [username])
 
   const getToken = React.useCallback(async (options?: IAuthTokenOptions) => {

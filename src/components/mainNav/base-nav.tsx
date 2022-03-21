@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react"
 import { FaBars } from "react-icons/fa"
-import { useTheme } from "@material-ui/core/styles"
-import { Menu, IconButton, useMediaQuery } from "@material-ui/core"
+import { useTheme } from "@mui/material/styles"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import IconButton from "@mui/material/IconButton"
+import Menu from "@mui/material/Menu"
 
 export interface INavItem {
   title: string;
@@ -21,7 +23,7 @@ export const BaseNav: React.FC<Props> = ({ navItems, onRenderMenuItem, onRenderN
   const gtSmall = useMediaQuery(theme.breakpoints.up("sm"))
 
   useEffect(() => {
-    function outsideElementClick (e?: MouseEvent) {
+    function outsideElementClick(e?: MouseEvent) {
       if (!e || !e.target || !(e.target as Element).closest) {
         return
       }
@@ -49,7 +51,7 @@ export const BaseNav: React.FC<Props> = ({ navItems, onRenderMenuItem, onRenderN
       <IconButton
         ref={anchorRef}
         aria-label="Menu"
-        style={{
+        sx={{
           padding: "20px",
           margin: "-20px"
         }}

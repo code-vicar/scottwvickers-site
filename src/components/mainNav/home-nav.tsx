@@ -1,8 +1,9 @@
 import React from "react"
-import { MenuItem, Button, Link, LinkClassKey } from "@material-ui/core"
-import { makeStyles, Theme } from "@material-ui/core/styles"
+import Button from "@mui/material/Button"
+import MenuItem from "@mui/material/MenuItem"
+import Link from "@mui/material/Link"
 import { BaseNav, INavItem } from "./base-nav"
-import { IMainNavComponent, Select } from "../../interfaces"
+import { IMainNavComponent } from "../../interfaces"
 
 const navItems: INavItem[] = [
   {
@@ -60,18 +61,11 @@ const HomeLink: React.FC<{ title: string; href: string }> = ({
   title,
   href
 }) => {
-  const useStyles = makeStyles<
-    Theme,
-    Record<string, unknown>,
-    Select<LinkClassKey, "root">
-  >(() => ({
-    root: {
-      margin: "10px"
-    }
-  }))
   return (
     <Link
-      classes={useStyles({})}
+      sx={{
+        margin: "10px"
+      }}
       key={title}
       href={href}
       onClick={(e: React.SyntheticEvent) => {

@@ -4,6 +4,6 @@ export interface IGatsbyPageProps {
   location: WindowLocation
 }
 
-export {
+export type {
   WindowLocation
 }

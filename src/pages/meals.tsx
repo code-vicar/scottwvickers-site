@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Typography } from "@material-ui/core"
+import Typography from "@mui/material/Typography"
 import { AuthProvider } from "../components/auth/AuthProvider"
 import { Layout } from "../components/layout"
 import { SEO } from "../components/seo"

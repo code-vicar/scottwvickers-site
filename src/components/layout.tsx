@@ -1,11 +1,12 @@
 import React from "react"
-import { makeStyles, createStyles } from "@material-ui/core/styles"
+import { makeStyles, createStyles } from "@mui/styles"
+import { Theme } from "@mui/material/styles"
 import { Header } from "./header"
 import { Footer } from "./footer"
 import { WindowLocation, IMainNavComponent } from "../interfaces"
 import { layout } from "../styles/constants"
 
-const useStyles = makeStyles(theme => createStyles({
+const useStyles = makeStyles<Theme>(theme => createStyles({
   root: {
     display: "flex",
     flexDirection: "column",

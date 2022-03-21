@@ -1,2 +1,1 @@
-export * from "./GraphClient"
-export * from "./IGraphClient"
+export * from "./useGraphClient"

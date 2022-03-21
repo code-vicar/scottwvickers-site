@@ -1,19 +1,10 @@
 import React from "react"
 
-import { Button, createStyles, makeStyles } from "@material-ui/core"
+import Box from "@mui/material/Box"
+import Button from "@mui/material/Button"
 
 import { AuthStatus } from "../../interfaces"
 import { AuthContextType } from "../../contexts"
-
-const useSignedInStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      alignItems: "center",
-      display: "flex",
-      gap: "5px"
-    }
-  })
-)
 
 const Loading: React.FC = () => {
   return <span>Updating auth status...</span>
@@ -23,12 +14,15 @@ const SignedIn: React.FC<{
   username: string;
   onSignOutClick: () => void
 }> = ({ username, onSignOutClick }) => {
-  const styles = useSignedInStyles()
   return (
-    <div className={styles.root}>
+    <Box sx={{
+      alignItems: "center",
+      display: "flex",
+      gap: "5px"
+    }}>
       <span>Hello {username}</span>
       <Button variant="contained" onClick={onSignOutClick} >Sign Out</Button>
-    </div>
+    </Box>
   )
 }
 

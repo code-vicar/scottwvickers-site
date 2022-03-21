@@ -1,5 +1,6 @@
 import React from "react"
-import { createStyles, Typography, makeStyles } from "@material-ui/core"
+import Typography from "@mui/material/Typography"
+import { createStyles, makeStyles } from "@mui/styles"
 import { AuthButton } from "../auth"
 
 const useStyles = makeStyles(() =>
