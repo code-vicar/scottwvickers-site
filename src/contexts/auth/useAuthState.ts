@@ -23,11 +23,19 @@ export const useAuthState: (initialUsername?: string) => IAuth = (initialUsernam
     })
     try {
       const signedIn = await msal.signIn()
-      console.log("signIn - AuthStatus Ready: signed in")
-      setAuthState({
-        status: AuthStatus.Ready,
-        username: signedIn.account.username
-      })
+      if (!signedIn.account) {
+        console.log("signIn - AuthStatus Failure: no account found")
+        setAuthState({
+          status: AuthStatus.Failure,
+          error: new Error("no account info found")
+        })
+      } else {
+        console.log("signIn - AuthStatus Ready: signed in")
+        setAuthState({
+          status: AuthStatus.Ready,
+          username: signedIn.account.username
+        })
+      }
     } catch (e) {
       console.log(e)
       console.log("signIn - AuthStatus Failure")

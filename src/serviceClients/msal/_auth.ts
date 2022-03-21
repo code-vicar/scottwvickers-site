@@ -37,7 +37,7 @@ export async function signOut(account: AccountInfo): Promise<void> {
     account
   }
   console.log("Signout request", logoutRequest)
-  return msal.logout(logoutRequest)
+  return msal.logoutPopup(logoutRequest)
 }
 
 export async function getTokenSilent(
