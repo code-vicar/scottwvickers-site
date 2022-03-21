@@ -1,18 +1,19 @@
 import * as React from "react"
-import CssBaseline from "@mui/material/CssBaseline/CssBaseline"
+import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 
 export const ThemeWrapper = ({ children }) => {
   const theme = createTheme({
-    custom: {
-      themeType: "dark"
+    palette: {
+      mode: "dark"
     }
   })
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {children}
+      <CssBaseline enableColorScheme={true}>
+        {children}
+      </CssBaseline>
     </ThemeProvider>
   )
 }

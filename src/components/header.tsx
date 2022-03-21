@@ -47,7 +47,7 @@ const useStyles = makeStyles<Theme>(theme => createStyles({
   collapsed: {
     [theme.breakpoints.up("sm")]: {
       minHeight: "50px",
-      background: theme.custom.themeType === "dark" ? navbar.colorCollapsedDark : navbar.colorCollapsed,
+      background: theme.palette.mode === "dark" ? navbar.colorCollapsedDark : navbar.colorCollapsed,
       borderBottom: `1px solid ${navbar.bottomBorderColor}`
     }
   },

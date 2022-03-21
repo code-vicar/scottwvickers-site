@@ -6,40 +6,53 @@ import { Footer } from "./footer"
 import { WindowLocation, IMainNavComponent } from "../interfaces"
 import { layout } from "../styles/constants"
 
-const useStyles = makeStyles<Theme>(theme => createStyles({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    marginLeft: "auto",
-    marginRight: "auto",
-    paddingRight: layout.contentSideMargin,
-    paddingLeft: layout.contentSideMargin
-  },
-  header: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexWrap: "wrap"
-  },
-  main: {
-    marginTop: "60px",
-    marginLeft: "auto",
-    marginRight: "auto",
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      maxWidth: `${theme.breakpoints.values.sm}px`
-    },
-    [theme.breakpoints.up("md")]: {
-      maxWidth: `${theme.breakpoints.values.md}px`
+const useStyles = makeStyles<Theme>(theme => {
+  const blockquoteColors = theme.palette.augmentColor({
+    color: {
+      main: theme.palette.background.default
     }
-  },
-  footer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "10px 0"
-  }
-}))
+  })
+  return createStyles({
+    root: {
+      display: "flex",
+      flexDirection: "column",
+      marginLeft: "auto",
+      marginRight: "auto",
+      paddingRight: layout.contentSideMargin,
+      paddingLeft: layout.contentSideMargin,
+      "& blockquote": {
+        background: blockquoteColors.dark,
+        color: blockquoteColors.contrastText,
+        borderLeftColor: blockquoteColors.light,
+        borderLeftStyle: "ridge"
+      }
+    },
+    header: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      flexWrap: "wrap"
+    },
+    main: {
+      marginTop: "60px",
+      marginLeft: "auto",
+      marginRight: "auto",
+      width: "100%",
+      [theme.breakpoints.up("sm")]: {
+        maxWidth: `${theme.breakpoints.values.sm}px`
+      },
+      [theme.breakpoints.up("md")]: {
+        maxWidth: `${theme.breakpoints.values.md}px`
+      }
+    },
+    footer: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      padding: "10px 0"
+    }
+  })
+})
 
 interface Props {
   title: string;

@@ -6,7 +6,7 @@ html {
 .offset-anchor {
   &:before {
     display: block;
-    content: ' ';
+    content: " ";
     height: 80px;
     visibility: hidden;
     pointer-events: none;
