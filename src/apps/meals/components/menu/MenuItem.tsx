@@ -1,5 +1,5 @@
 import React from "react"
-import { IMenuItem } from "../../interfaces"
+import { IMenuItem } from "../../../../interfaces"
 
 export type IMenuItemProps = Pick<IMenuItem, "name" | "description">
 

@@ -1,17 +1,17 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import { Author as Bio } from "../components/author"
-import { Layout } from "../components/layout"
-import { SEO } from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
-import { BlogNav } from "../components/mainNav/blog-nav"
+import { Author as Bio } from "../../../components/author"
+import { Layout } from "../../../components/layout"
+import { SEO } from "../../../components/seo"
+import { rhythm, scale } from "../../../utils/typography"
+import { NotesNav } from "../components/nav/notes-nav"
 import {
   ISiteMetaData,
   IBlogPostContext,
   IMarkdownQueryFields,
   IMarkdownQueryFrontmatter,
   IGatsbyPageProps
-} from "../interfaces"
+} from "../../../interfaces"
 
 interface IPageQuery {
   site: {
@@ -31,13 +31,13 @@ interface Props extends IGatsbyPageProps {
   pageContext: IBlogPostContext;
 }
 
-const BlogPostTemplate: React.FC<Props> = ({ data, pageContext, location }) => {
+const NoteTemplate: React.FC<Props> = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
 
   return (
-    <Layout location={location} title={siteTitle} MainNav={BlogNav}>
+    <Layout location={location} title={siteTitle} MainNav={NotesNav}>
       <SEO
         title={post.frontmatter.title || post.fields.slug}
         description={post.frontmatter.description || post.excerpt}
@@ -103,10 +103,10 @@ const BlogPostTemplate: React.FC<Props> = ({ data, pageContext, location }) => {
   )
 }
 
-export default BlogPostTemplate
+export default NoteTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query NoteBySlug($slug: String!) {
     site {
       siteMetadata {
         title

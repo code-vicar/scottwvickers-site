@@ -3,8 +3,8 @@ import React from "react"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 
-import { AuthStatus } from "../../interfaces"
-import { AuthContextType } from "../../contexts"
+import { AuthStatus } from "../../../interfaces"
+import { AuthContextType } from "../../../contexts"
 
 const Loading: React.FC = () => {
   return <span>Updating auth status...</span>

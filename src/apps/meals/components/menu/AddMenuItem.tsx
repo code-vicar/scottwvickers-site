@@ -6,7 +6,7 @@ import {
   createStyles,
   makeStyles
 } from "@mui/styles"
-import { MenuContextType } from "../../contexts/menu"
+import { MenuContextType } from "../../../../contexts/menu"
 
 const useStyles = makeStyles(() =>
   createStyles({

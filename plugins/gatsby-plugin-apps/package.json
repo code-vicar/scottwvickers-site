@@ -1,0 +1,8 @@
+{
+  "name": "gatsby-plugin-apps",
+  "peerDependencies": {
+    "@sindresorhus/slugify": "^2.1.0",
+    "gatsby-source-filesystem": "^4.10.0",
+    "globby": "^13.1.1"
+  }
+}

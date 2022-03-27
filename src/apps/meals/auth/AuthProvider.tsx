@@ -1,6 +1,6 @@
 import React from "react"
-import { AuthContextType, useAuthState } from "../../contexts"
-import { saveUsername, loadUsername } from "../../utils/authStorage"
+import { AuthContextType, useAuthState } from "../../../contexts"
+import { saveUsername, loadUsername } from "../../../utils/authStorage"
 
 export const AuthProvider: React.FC = ({ children }) => {
   const username = loadUsername()

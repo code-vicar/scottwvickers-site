@@ -1,6 +1,6 @@
 import React from "react"
 import { makeStyles, createStyles } from "@mui/styles"
-import { MenuContextType } from "../../contexts/menu"
+import { MenuContextType } from "../../../../contexts/menu"
 import { MenuItem } from "./MenuItem"
 
 const useStyles = makeStyles(() =>

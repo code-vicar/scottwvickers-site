@@ -1,0 +1,6 @@
+{
+  "name": "gatsby-plugin-notes",
+  "peerDependencies": {
+    "gatsby-source-filesystem": "^4.10.0"
+  }
+}

@@ -3,8 +3,8 @@ import Button from "@mui/material/Button"
 import MenuItem from "@mui/material/MenuItem"
 import Link from "@mui/material/Link"
 import { navigate } from "gatsby"
-import { BaseNav, INavItem } from "./base-nav"
-import { IMainNavComponent } from "../../interfaces"
+import { BaseNav, INavItem } from "../../../../components/mainNav/base-nav"
+import { IMainNavComponent } from "../../../../interfaces"
 
 const navItems: INavItem[] = [
   {
@@ -48,7 +48,7 @@ const renderNavItem = ({ title, url }: INavItem) => (
   </Link>
 )
 
-export const BlogNav: IMainNavComponent = () => (
+export const NotesNav: IMainNavComponent = () => (
   <BaseNav
     navItems={navItems}
     onRenderMenuItem={renderMenuItem}

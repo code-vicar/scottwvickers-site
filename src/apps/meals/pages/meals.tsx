@@ -1,12 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Typography from "@mui/material/Typography"
-import { AuthProvider } from "../components/auth/AuthProvider"
-import { Layout } from "../components/layout"
-import { SEO } from "../components/seo"
+import { AuthProvider } from "../auth/AuthProvider"
+import { Layout } from "../../../components/layout"
+import { SEO } from "../../../components/seo"
 import { MealPlanner } from "../components/mealPlanner"
 
-import { ISiteMetaData, IGatsbyPageProps } from "../interfaces"
+import { ISiteMetaData, IGatsbyPageProps } from "../../../interfaces"
 
 interface Props extends IGatsbyPageProps {
   data: {

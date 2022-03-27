@@ -1,15 +1,15 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Typography from "@mui/material/Typography"
-import { Layout } from "../components/layout"
-import { SEO } from "../components/seo"
-import { rhythm } from "../utils/typography"
+import { Layout } from "../../../components/layout"
+import { SEO } from "../../../components/seo"
+import { rhythm } from "../../../utils/typography"
 import {
   ISiteMetaData,
   IMarkdownQueryFields,
   IMarkdownQueryFrontmatter,
   IGatsbyPageProps
-} from "../interfaces"
+} from "../../../interfaces"
 
 interface IMarkdownNode {
   excerpt: string;
